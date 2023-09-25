@@ -8,6 +8,3 @@ class Player:
         self.hp = self.health + self.defense
         self.attack = 5
         self.gold = 0
-
-
-    

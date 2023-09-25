@@ -46,9 +46,27 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     wynhaven_lair = Room('Wynvern Lair', 'Wynvern Lair is a hidden sanctuary nestled within the craggy heart of a mist-shrouded mountain, its caverns adorned with glistening crystals and echoing with the occasional stirring of slumbering wyverns, guarding their ancient treasures.', None, None, 25)
     zukos_stronghold = Room("Zuko's Stronghold", 'Zukos Stronghold, hewn from the living rock of a volcanic peak, stands as a formidable bastion overlooking a fiery landscape, where molten streams cascade down the slopes, and the air resonates with the presence of the majestic dragon, Zuko, guardian of this fiery domain.', None, None, 25)
     
+    ghost1 = Monster("Ghost", 25, 30, 5, 40, ["Ghostly Essence", "Gold Coin"])
+    ghost2 = Monster("Ghost", 25, 30, 5, 40, ["Ghostly Essence", "Gold Coin"])
+    ghost3 = Monster("Ghost", 25, 30, 5, 40, ["Ghostly Essence", "Gold Coin"])
+    troll1 = Monster("Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"])
+    troll2 = Monster("Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"])
+    troll3 = Monster("Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"])
+    vampire1 = Monster("Vampire", 40, 60, 15, 28, ["Vampire Fang", "Gold Coin"])
+    vampire2 = Monster("Vampire", 40, 60, 15, 28, ["Vampire Fang", "Gold Coin"])
+    vampire3 = Monster("Vampire", 40, 60, 15, 28, ["Vampire Fang", "Gold Coin"])
+    werewolf1 = Monster("Werewolf", 30, 75, 20, 22, ["Werewolf Fur", "Gold Coin"])
+    werewolf2 = Monster("Werewolf", 30, 75, 20, 22, ["Werewolf Fur", "Gold Coin"])
+    werewolf3 = Monster("Werewolf", 30, 75, 20, 22, ["Werewolf Fur", "Gold Coin"])
+    demon1 = Monster("Demon", 45, 90, 25, 15, ["Demon Horn", "Gold Coin"])
+    demon2 = Monster("Demon", 45, 90, 25, 15, ["Demon Horn", "Gold Coin"])
+    demon3 = Monster("Demon", 45, 90, 25, 15, ["Demon Horn", "Gold Coin"])
+    dragon1 = Monster("Zephyrion", 100, 200, 20, 30, ["Dragon Scale", "Dragon Tooth"])
+    dragon2 = Monster("Celestiax", 100, 200, 20, 30, ["Dragon Scale", "Dragon Tooth"])
+    dragon3 = Monster("Zuko", 100, 200, 30, 30, ["Dragon Scale", "Dragon Tooth"])
 
 
-    while True:
+while True:
         user_input = input(">> ")
 
         if user_input == "go up":
