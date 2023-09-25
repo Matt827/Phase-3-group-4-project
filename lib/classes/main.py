@@ -8,7 +8,7 @@
 
 from player import Player
 from rooms import Room
-
+from item import Item
 
 # result = pyfiglet.figlet_format("Adventures of Mattanoman")
 
@@ -25,7 +25,7 @@ def main():
 Once upon a time, in the mystical realm of Eldoria, there was a fallen king named {player_name.name}. He had once ruled over a prosperous kingdom, but his reign had been marred by a black dragon. 
 The Black Dragon took control of the entire kingdom and took his people into captivity. 
 He must now adventure through the land of Elda, battling monsters and foes, and eventually defeating the Black Dragon, Zuko to free his people and reclaim his kingdom.''')
-    
+    ## LOCATIONS
     moonshadow_grove = Room('Moonshadow Grove', 'Moonshadow Grov, a mystical forest bathed in the silvery glow of the moon, where ancient, luminescent flora and fauna thrive, and whispers of forgotten enchantments linger in the cool night air.', None, None, 25)
     whispering_woods = Room('Whispering Woods', 'Whispering Woods, a serene woodland sanctuary where the leaves rustle with secrets, and ancient trees seem to murmur tales of forgotten magic, offering solace to those who seek its tranquil embrace.', None, None, 25)
     eldemoor_forest = Room('Eldemoor Forest', 'Eldemoor Forest, an ethereal realm where ancient trees reach for the sky, their trunks adorned with bioluminescent flora that illuminate the forest floor, casting a surreal, enchanting glow over the moss-covered ground.', None, None, 25)
@@ -45,6 +45,28 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     obsidian_abyss = Room('Obsidian Abyss', 'Obsidian Abyss plunges into the depths of the earth, a chasm of smooth, jet-black stone walls that seem to absorb all light, where the air is heavy with a sense of ancient, foreboding power.', None, None, 25)
     wynhaven_lair = Room('Wynvern Lair', 'Wynvern Lair is a hidden sanctuary nestled within the craggy heart of a mist-shrouded mountain, its caverns adorned with glistening crystals and echoing with the occasional stirring of slumbering wyverns, guarding their ancient treasures.', None, None, 25)
     zukos_stronghold = Room("Zuko's Stronghold", 'Zukos Stronghold, hewn from the living rock of a volcanic peak, stands as a formidable bastion overlooking a fiery landscape, where molten streams cascade down the slopes, and the air resonates with the presence of the majestic dragon, Zuko, guardian of this fiery domain.', None, None, 25)
+    
+    ## WEAPONS
+    excalibur = Item("Excalibur", "Legendary Sword", 10, None, None, 15)
+    mjolnir = Item("Mjolnir", "Thunderous Hammer", 20, None, None, 25)
+    dragonbone_bow = Item("Dragonbone Bow", "Wyrmstring Bow", 27, None, None, 32)
+    shadowblade = Item("Shadow Blade", "Stealthy Dagger", 15, None, None, 20)
+    soul_reaver = Item("Soul Reaver", "Cursed Sword", 30, None, None, 35)
+    moonlit_dagger = Item("Moonlit Dagger", "Silvered Blade", 13, None, None, 17)
+    serpents_fang = Item("Serpent's Fang", "Venomous Whip", 16, None, None, 21)
+    stormcaller = Item("Stormcaller", "Lightning Sword", 27, None, None, 32)
+    dwarven_crossbow = Item("Dwarvan Crossbow", "Stour Crossbow", 12, None, None, 17)
+    warhammer_of_the_titans = Item("Warhammer of the Titans", "Colossal Warhammer", 35, None, None, 40)
+
+    ## ARMOR
+    knight_armor_set = Item("Knights Armor Set", None, 25, None, 35)
+    noble_lord_armor_set = Item("Noble Lord Armor Set", None, 50, None, 60)
+    commander_armor_set = Item("Commander Armor Set", None, 75, None, 85)
+    king_armor_set = Item("King Armor Set", None, 100, None, 110)
+
+    ## POTION
+    health = Item("Increase Max Health", None, None, 25, 50)
+
     
 
 
