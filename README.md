@@ -34,5 +34,13 @@ CLI adventure that game follows a story line of a fallen king that scales throug
 - user is able to beat the game:
   - user is able to defeat the dragon
 
+## Classes
+
+- Player
+- Monsters
+- Items
+- Rooms
+
 <img src="./lib/classes/assets/map.png" >
+<img src="./lib/classes/assets/one-to-many.png" >
 <img src="./lib/classes/assets/kanban.png">
