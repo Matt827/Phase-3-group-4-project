@@ -2,8 +2,7 @@
 
 ## Title: The Legend of Mattanoman
 
-CLI game that follows a story line of a fallen emperor that ventures through the landscape of China
-battling various creatures, monsters and criminals, and eventually defeating the jade dragon and re-claiming their throne and empire.
+CLI adventure that game follows a story line of a fallen king that scales through the landscapes and towns, battling various creatures, monsters and foes. Eventually, defeating the black dragon and re-claiming their throne and kingdom.
 
 ## CRUD
 
