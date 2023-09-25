@@ -26,3 +26,5 @@ battling various creatures, monsters and criminals, and eventually defeating the
 - user is able to consume items
 - user is able to carry multiple items
 - user is able to examine items
+
+<img src="./lib/classes/assets/kanban.png">
