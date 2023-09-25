@@ -9,9 +9,9 @@
 from player import Player
 from rooms import Room
 from item import Item
+from monster import Monster
 
 # result = pyfiglet.figlet_format("Adventures of Mattanoman")
-
 
 
 
@@ -46,6 +46,30 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     wynhaven_lair = Room('Wynvern Lair', 'Wynvern Lair is a hidden sanctuary nestled within the craggy heart of a mist-shrouded mountain, its caverns adorned with glistening crystals and echoing with the occasional stirring of slumbering wyverns, guarding their ancient treasures.', None, None, 25)
     zukos_stronghold = Room("Zuko's Stronghold", 'Zukos Stronghold, hewn from the living rock of a volcanic peak, stands as a formidable bastion overlooking a fiery landscape, where molten streams cascade down the slopes, and the air resonates with the presence of the majestic dragon, Zuko, guardian of this fiery domain.', None, None, 25)
     
+    # phoenixreach_city.room_directions(shadow_peak, obsidian_abyss, crimsonreach_fortress, serpents_labrynth)
+    # moonshadow_grove.room_directions(misthaven_vale, shadow_peak, thunderpeak_summit, shadowfen_swamp)
+    misthaven_vale.room_directions(eldemoor_forest, moonshadow_grove, moonlit_cove, glade_grasslands)
+    # whispering_woods.room_directions(None, moonlit_cove, None, eldemoor_forest)
+    # eldemoor_forest.room_directions(None, misthaven_vale, whispering_woods, frostfall_glacier)
+    # frostfall_glacier.room_directions(None, None, eldemoor_forest, None)
+    # silverstrand_beach.room_directions(None, mistral_bay, None, moonlit_cove)
+    # moonlit_cove.room_directions(whispering_woods, thunderpeak_summit, silverstrand_beach, misthaven_vale)
+    # glade_grasslands.room_directions(None, shadowfen_swamp, misthaven_vale, luminara_falls)
+    # luminara_falls.room_directions(None, None, glade_grasslands, None)
+    # mistral_bay.room_directions(silverstrand_beach, None, None, None)
+    # thunderpeak_summit.room_directions(moonlit_cove, glade_grasslands, None, moonshadow_grove)
+    # shadowfen_swamp.room_directions(glade_grasslands, None, moonshadow_grove, None)
+    # shadow_peak.room_directions(moonshadow_grove, phoenixreach_city, None, None)
+    # crimsonreach_fortress.room_directions(glade_grasslands, None, None, phoenixreach_city)
+    # serpents_labrynth.room_directions(None, wynhaven_lair, phoenixreach_city, None)
+    # obsidian_abyss.room_directions(phoenixreach_city, None, None, wynhaven_lair)
+    # wynhaven_lair.room_directions(serpents_labrynth, None, obsidian_abyss, zukos_stronghold)
+    # zukos_stronghold.room_directions(None, None, wynhaven_lair, None)
+
+
+    # global current_room
+    
+
 
     #MONSTERS
     ghost1 = Monster("Ghost", 25, 30, 5, 40, ["Ghostly Essence", "Gold Coin"])
@@ -69,40 +93,47 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
 
 
     ## WEAPONS
-    excalibur = Item("Excalibur", "Legendary Sword", 10, None, None, 15)
-    mjolnir = Item("Mjolnir", "Thunderous Hammer", 20, None, None, 25)
-    dragonbone_bow = Item("Dragonbone Bow", "Wyrmstring Bow", 27, None, None, 32)
-    shadowblade = Item("Shadow Blade", "Stealthy Dagger", 15, None, None, 20)
-    soul_reaver = Item("Soul Reaver", "Cursed Sword", 30, None, None, 35)
-    moonlit_dagger = Item("Moonlit Dagger", "Silvered Blade", 13, None, None, 17)
-    serpents_fang = Item("Serpent's Fang", "Venomous Whip", 16, None, None, 21)
-    stormcaller = Item("Stormcaller", "Lightning Sword", 27, None, None, 32)
-    dwarven_crossbow = Item("Dwarvan Crossbow", "Stour Crossbow", 12, None, None, 17)
-    warhammer_of_the_titans = Item("Warhammer of the Titans", "Colossal Warhammer", 35, None, None, 40)
+    # excalibur = Item("Excalibur", "Legendary Sword", 10, None, None, 15)
+    # mjolnir = Item("Mjolnir", "Thunderous Hammer", 20, None, None, 25)
+    # dragonbone_bow = Item("Dragonbone Bow", "Wyrmstring Bow", 27, None, None, 32)
+    # shadowblade = Item("Shadow Blade", "Stealthy Dagger", 15, None, None, 20)
+    # soul_reaver = Item("Soul Reaver", "Cursed Sword", 30, None, None, 35)
+    # moonlit_dagger = Item("Moonlit Dagger", "Silvered Blade", 13, None, None, 17)
+    # serpents_fang = Item("Serpent's Fang", "Venomous Whip", 16, None, None, 21)
+    # stormcaller = Item("Stormcaller", "Lightning Sword", 27, None, None, 32)
+    # dwarven_crossbow = Item("Dwarvan Crossbow", "Stour Crossbow", 12, None, None, 17)
+    # warhammer_of_the_titans = Item("Warhammer of the Titans", "Colossal Warhammer", 35, None, None, 40)
 
-    ## ARMOR
-    knight_armor_set = Item("Knights Armor Set", None, 25, None, 35)
-    noble_lord_armor_set = Item("Noble Lord Armor Set", None, 50, None, 60)
-    commander_armor_set = Item("Commander Armor Set", None, 75, None, 85)
-    king_armor_set = Item("King Armor Set", None, 100, None, 110)
+    # ## ARMOR
+    # knight_armor_set = Item("Knights Armor Set", None, 25, None, 35)
+    # noble_lord_armor_set = Item("Noble Lord Armor Set", None, 50, None, 60)
+    # commander_armor_set = Item("Commander Armor Set", None, 75, None, 85)
+    # king_armor_set = Item("King Armor Set", None, 100, None, 110)
 
-    ## POTION
-    health = Item("Increase Max Health", None, None, 25, 50)
+    # ## POTION
+    # health = Item("Increase Max Health", None, None, 25, 50)
 
-    
+    current_room = misthaven_vale
+    def go_direction(user_input):
+        if current_room != None:
+            direction = user_input[3:]
+            current_room = current_room.dict[direction].name
+            print(current_room)
+        else:
+           print("Not working!")
 
 
     while True:
         user_input = input(">> ")
 
         if user_input == "go up":
-            print("You went up")
+            go_direction(user_input)
         elif user_input == "go down":
-            print("You went down")
+            go_direction(user_input)
         elif user_input == "go left":
-            print("You went left")
+            go_direction(user_input)
         elif user_input == "go right":
-            print("You went right")
+            go_direction(user_input)
         else:
             print("Choose a valid direction. ex. 'go left', 'go right'")
 
