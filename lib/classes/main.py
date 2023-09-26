@@ -66,7 +66,7 @@ def main():
 Once upon a time, in the mystical realm of Eldoria, there was a fallen king named {player.name}. 
 He had once ruled over a prosperous kingdom, but his reign had been marred by a black dragon. 
 The Black Dragon took control of the entire kingdom and took his people into captivity. 
-He must now advenmture through the land of Elda, battling monsters and foes, and eventually defeating the Black Dragon, Zuko to free his people and reclaim his kingdom.''')
+He must now adventure through the land of Elda, battling monsters and foes, and eventually defeating the Black Dragon, Zuko to free his people and reclaim his kingdom.''')
     
 
     # MONSTERS
@@ -109,7 +109,7 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
     king_armor_set = Item("King Armor Set", "ARMOR", "none", None, 100, None, 110)
 
     # POTION
-    health = Item("Vitality Elixir", "POTION", "none", None, None, 25, 50)
+    health_potion = Item("Vitality Elixir", "POTION", "none", None, None, 25, 50)
 
     
     player.inventory.append(excalibur)
@@ -138,7 +138,7 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
         #    print("Not working!")
         
     def help():
-        print('''
+        print('''    Commands list:
     go up,  go down,  go left,  go right,  go back, 
     view info,  view inventory,  location details, 
               ''')
@@ -185,10 +185,14 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
             back()
         elif user_input == "help":
             help()
+        elif user_input == "view inventory":
+            view_inventory()
         elif user_input == "view info":
             view_info()
+        elif user_input == "location details":
+            view_room()
         else:
-            print("Choose a valid direction. ex. 'go left', 'go right'")
+            print("Choose a valid input, use 'help' for more details.")
 
 
 main()
