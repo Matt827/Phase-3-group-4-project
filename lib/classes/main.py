@@ -109,8 +109,8 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
     king_armor_set = Item("King Armor Set", "ARMOR", "none", None, 100, None, 110)
 
     # POTION
-    health_potion = Item("Vitality Elixir", "POTION", "none", None, None, 25, 50)
-    
+    health = Item("Vitality Elixir", "POTION", "none", None, None, 25, 50)
+
     
     player.inventory.append(excalibur)
     player.inventory.append(knight_armor_set)
@@ -136,6 +136,7 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
         #     print(current_room)
         # else:
         #    print("Not working!")
+        
     def help():
         print('''
     go up,  go down,  go left,  go right,  go back, 
@@ -160,6 +161,15 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
         print(f"current room: {current_room.name}")
         print(f"previous room: {prev_room.name}")
 
+    def back():
+        global current_room
+        global prev_room
+        temp = prev_room
+        prev_room = current_room
+        current_room = temp
+        print(f'current:{current_room.name}')
+        print(f'previous:{prev_room.name}')
+
     while True:
         user_input = input(">> ")
 
@@ -177,10 +187,6 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
             help()
         elif user_input == "view info":
             view_info()
-        elif user_input == "view inventory":
-            view_inventory()
-        elif user_input == "location details":
-            view_room()
         else:
             print("Choose a valid direction. ex. 'go left', 'go right'")
 
