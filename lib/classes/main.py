@@ -136,11 +136,18 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     
     
     def go_direction(user_input, current_room):
+        NoneType = type(None)
+
+        prev_room = current_room
         directions(current_room)
         direction = user_input[3:]
         current_room = current_room.dict[direction]
-        print(current_room.name)
-        change_direction(current_room)
+        if isinstance(current_room, NoneType):
+            print("Cannot go that direction!")
+            change_direction(prev_room)
+        else:
+            print(current_room.name)
+            change_direction(current_room)
             
         
 
