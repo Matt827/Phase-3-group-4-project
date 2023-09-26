@@ -136,6 +136,15 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
     def view_info():
         player.display_info()
 
+    def back():
+        global current_room
+        global prev_room
+        temp = prev_room
+        prev_room = current_room
+        current_room = temp
+        print(f'current:{current_room.name}')
+        print(f'previous:{prev_room.name}')
+
     while True:
         user_input = input(">> ")
 
@@ -149,6 +158,8 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
             go_direction(user_input)
         elif user_input == "view info":
             view_info()
+        elif user_input == "go back":
+            back()
         else:
             print("Choose a valid direction. ex. 'go left', 'go right'")
 
