@@ -8,7 +8,7 @@ class Player:
         self.hp = self.health + self.defense
         self.attack = 5
         self.gold = 0
-        self.inventory = ["ball", "bull", "sup"]
+        self.inventory = []
 
     def display_info(self):
         print(f'''
@@ -25,4 +25,4 @@ class Player:
             print("nothing in inventory")
         else:
             for item in self.inventory:
-                print(f"{item}")
+                print(f"{item.item_type}: {item.name}")

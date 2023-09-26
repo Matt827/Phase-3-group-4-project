@@ -20,5 +20,11 @@ class Room:
         self.dict["down"] = room_down
         self.dict["left"] = room_left
         self.dict["right"] = room_right
-
         
+    def display_info(self):
+        print(f'''
+            location: {self.name}
+            monster: {self.monster}
+            shop: {self.shop}
+            gold: {self.gold}
+              ''')

@@ -91,26 +91,30 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
 
 
     # WEAPONS
-    excalibur = Item("Excalibur", "Legendary Sword", 10, None, None, 15)
-    mjolnir = Item("Mjolnir", "Thunderous Hammer", 20, None, None, 25)
-    dragonbone_bow = Item("Dragonbone Bow", "Wyrmstring Bow", 27, None, None, 32)
-    shadowblade = Item("Shadow Blade", "Stealthy Dagger", 15, None, None, 20)
-    soul_reaver = Item("Soul Reaver", "Cursed Sword", 30, None, None, 35)
-    moonlit_dagger = Item("Moonlit Dagger", "Silvered Blade", 13, None, None, 17)
-    serpents_fang = Item("Serpent's Fang", "Venomous Whip", 16, None, None, 21)
-    stormcaller = Item("Stormcaller", "Lightning Sword", 27, None, None, 32)
-    dwarven_crossbow = Item("Dwarvan Crossbow", "Stour Crossbow", 12, None, None, 17)
-    warhammer_of_the_titans = Item("Warhammer of the Titans", "Colossal Warhammer", 35, None, None, 40)
+    excalibur = Item("Excalibur", "WEAPON", "Legendary Sword", 10, None, None, 15)
+    mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, None, None, 25)
+    dragonbone_bow = Item("Dragonbone Bow", "WEAPON", "Wyrmstring Bow", 27, None, None, 32)
+    shadowblade = Item("Shadow Blade", "WEAPON", "Stealthy Dagger", 15, None, None, 20)
+    soul_reaver = Item("Soul Reaver", "WEAPON", "Cursed Sword", 30, None, None, 35)
+    moonlit_dagger = Item("Moonlit Dagger", "WEAPON", "Silvered Blade", 13, None, None, 17)
+    serpents_fang = Item("Serpent's Fang", "WEAPON", "Venomous Whip", 16, None, None, 21)
+    stormcaller = Item("Stormcaller", "WEAPON", "Lightning Sword", 27, None, None, 32)
+    dwarven_crossbow = Item("Dwarvan Crossbow", "WEAPON", "Stour Crossbow", 12, None, None, 17)
+    warhammer_of_the_titans = Item("Warhammer of the Titans", "WEAPON", "Colossal Warhammer", 35, None, None, 40)
 
     # ARMOR
-    knight_armor_set = Item("Knights Armor Set", "none", None, 25, None, 35)
-    noble_lord_armor_set = Item("Noble Lord Armor Set", "none", None, 50, None, 60)
-    commander_armor_set = Item("Commander Armor Set", "none", None, 75, None, 85)
-    king_armor_set = Item("King Armor Set", "none", None, 100, None, 110)
+    knight_armor_set = Item("Knights Armor Set", "ARMOR", "none", None, 25, None, 35)
+    noble_lord_armor_set = Item("Noble Lord Armor Set", "ARMOR", "none", None, 50, None, 60)
+    commander_armor_set = Item("Commander Armor Set", "ARMOR", "none", None, 75, None, 85)
+    king_armor_set = Item("King Armor Set", "ARMOR", "none", None, 100, None, 110)
 
     # POTION
-    health = Item("Increase Max Health", "none", None, None, 25, 50)
-
+    health_potion = Item("Vitality Elixir", "POTION", "none", None, None, 25, 50)
+    
+    
+    player.inventory.append(excalibur)
+    player.inventory.append(knight_armor_set)
+    player.inventory.append(health_potion)
     
     def go_direction(user_input):
         noneType = type(None)
@@ -132,12 +136,20 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
         #     print(current_room)
         # else:
         #    print("Not working!")
+    def help():
+        print('''
+    go up,  go down,  go left,  go right,  go back, 
+    view info,  view inventory,  location details, 
+              ''')
 
     def view_info():
         player.display_info()
         
     def view_inventory():
         player.display_inventory()
+        
+    def view_room():
+        current_room.display_info()
     
     def back():
         global current_room
@@ -161,10 +173,14 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
             go_direction(user_input)
         elif user_input == "go back":
             back()
+        elif user_input == "help":
+            help()
         elif user_input == "view info":
             view_info()
         elif user_input == "view inventory":
             view_inventory()
+        elif user_input == "location details":
+            view_room()
         else:
             print("Choose a valid direction. ex. 'go left', 'go right'")
 
