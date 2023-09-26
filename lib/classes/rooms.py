@@ -1,5 +1,8 @@
 
+
 class Room:
+
+    
 
     def __init__(self, name, description, monster, shop, gold):
         self.name = name
@@ -21,4 +24,3 @@ class Room:
         self.dict["left"] = room_left
         self.dict["right"] = room_right
 
-        
