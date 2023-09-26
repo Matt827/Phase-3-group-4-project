@@ -20,6 +20,7 @@ silverstrand_beach = Room('Silverstrand Beach', 'Silverstrand Beach is a pristin
 moonlit_cove = Room('Moonlit Cove', 'Moonlit Cove is a secluded bay nestled between rugged cliffs, its tranquil waters reflecting the silvery glow of the moon, while ancient, luminescent flora line the shore, casting an otherworldly aura over this hidden sanctuary.', None, None, 25)
 misthaven_vale = Room('Misthaven Vale', 'Misthaven Vale is a mystical highland shrouded in perpetual mist, where emerald forests and cascading waterfalls converge, and the air is alive with the soft hum of ancient enchantments, creating an ethereal realm untouched by time.', None, None, 25)
 glade_grasslands = Room('Glade Grasslands', 'Glade Grasslands unfurl as an endless expanse of rolling meadows, their emerald blades swaying in harmonious rhythm with the breeze, where wildflowers bloom in a symphony of color, inviting wanderers to bask in the serenity of natures embrace.', None, None, 25)
+avalon = Room('Avalon', "Mythical island of legend", None, None, 25)
 luminara_falls = Room('Luminara Falls', 'Luminara Falls cascades down a majestic cliffside, its crystalline waters refracting the sunlight into a kaleidoscope of colors, while ethereal wisps of mist dance around the falls, creating a breathtaking, almost otherworldly spectacle.', None, None, 25)
 mistral_bay = Room('Mistral Bay', 'Mistral Bay is a picturesque coastal retreat where azure waves gently lap against the shore, kissed by the refreshing caress of a perpetual sea breeze, while rugged cliffs and lush vegetation frame this idyllic sanctuary.', None, None, 25)
 thunderpeak_summit = Room('Thunderpeak Summit', 'Thunderpeak Summit looms as the highest pinnacle in a range of ancient, mist-shrouded mountains, its jagged spires seeming to touch the very heavens, where thunderstorms and crackling energy fill the air with an electric charge, creating an awe-inspiring yet perilous realm.', None, None, 25)
@@ -29,7 +30,7 @@ crimsonreach_fortress = Room('Crimsonreach Fortress', 'Crimsonreach Fortress is 
 phoenixreach_city = Room('Pheonixreach City', 'Phoenixreach City sprawls as a bustling metropolis of gleaming spires and arched bridges, its streets alive with a vibrant tapestry of cultures, where the air hums with the energy of innovation and the spirit of rebirth.', None, None, 25)
 serpents_labrynth = Room("Serpent's Labrynth", 'Serpents Labyrinth winds through an ancient subterranean maze, its shadowy passages illuminated by bioluminescent flora, where the hiss of unseen creatures and the echo of forgotten whispers create an eerie, enigmatic atmosphere.', None, None, 25)
 obsidian_abyss = Room('Obsidian Abyss', 'Obsidian Abyss plunges into the depths of the earth, a chasm of smooth, jet-black stone walls that seem to absorb all light, where the air is heavy with a sense of ancient, foreboding power.', None, None, 25)
-wynhaven_lair = Room('Wynvern Lair', 'Wynvern Lair is a hidden sanctuary nestled within the craggy heart of a mist-shrouded mountain, its caverns adorned with glistening crystals and echoing with the occasional stirring of slumbering wyverns, guarding their ancient treasures.', None, None, 25)
+wyvern_lair = Room('Wyvern Lair', 'Wynvern Lair is a hidden sanctuary nestled within the craggy heart of a mist-shrouded mountain, its caverns adorned with glistening crystals and echoing with the occasional stirring of slumbering wyverns, guarding their ancient treasures.', None, None, 25)
 zukos_stronghold = Room("Zuko's Stronghold", 'Zukos Stronghold, hewn from the living rock of a volcanic peak, stands as a formidable bastion overlooking a fiery landscape, where molten streams cascade down the slopes, and the air resonates with the presence of the majestic dragon, Zuko, guardian of this fiery domain.', None, None, 25)
 
 phoenixreach_city.room_directions(shadow_peak, obsidian_abyss, crimsonreach_fortress, serpents_labrynth)
@@ -41,16 +42,17 @@ frostfall_glacier.room_directions(None, None, eldemoor_forest, None)
 silverstrand_beach.room_directions(None, mistral_bay, None, moonlit_cove)
 moonlit_cove.room_directions(whispering_woods, thunderpeak_summit, silverstrand_beach, misthaven_vale)
 glade_grasslands.room_directions(None, shadowfen_swamp, misthaven_vale, luminara_falls)
+avalon.room_directions(thunderpeak_summit, crimsonreach_fortress, None, None)
 luminara_falls.room_directions(None, None, glade_grasslands, None)
 mistral_bay.room_directions(silverstrand_beach, None, None, None)
-thunderpeak_summit.room_directions(moonlit_cove, glade_grasslands, None, moonshadow_grove)
+thunderpeak_summit.room_directions(moonlit_cove, avalon, None, moonshadow_grove)
 shadowfen_swamp.room_directions(glade_grasslands, None, moonshadow_grove, None)
 shadow_peak.room_directions(moonshadow_grove, phoenixreach_city, None, None)
-crimsonreach_fortress.room_directions(glade_grasslands, None, None, phoenixreach_city)
-serpents_labrynth.room_directions(None, wynhaven_lair, phoenixreach_city, None)
-obsidian_abyss.room_directions(phoenixreach_city, None, None, wynhaven_lair)
-wynhaven_lair.room_directions(serpents_labrynth, None, obsidian_abyss, zukos_stronghold)
-zukos_stronghold.room_directions(None, None, wynhaven_lair, None)
+crimsonreach_fortress.room_directions(avalon, None, None, phoenixreach_city)
+serpents_labrynth.room_directions(None, wyvern_lair, phoenixreach_city, None)
+obsidian_abyss.room_directions(phoenixreach_city, None, None, wyvern_lair)
+wyvern_lair.room_directions(serpents_labrynth, None, obsidian_abyss, zukos_stronghold)
+zukos_stronghold.room_directions(None, None, wyvern_lair, None)
 
 # Current room player is in and Previous room player was in
 current_room = misthaven_vale
@@ -88,7 +90,29 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     dragon1 = Monster("Zephyrion", 100, 200, 20, 30, ["Dragon Scale", "Dragon Tooth"])
     dragon2 = Monster("Celestiax", 100, 200, 20, 30, ["Dragon Scale", "Dragon Tooth"])
     dragon3 = Monster("Zuko", 100, 200, 30, 30, ["Dragon Scale", "Dragon Tooth"])
-
+    
+    #Assign monsters to rooms
+    phoenixreach_city.monster = demon3
+    moonshadow_grove.monster = ghost1
+    misthaven_vale.monster = None
+    whispering_woods.monster = ghost3
+    eldemoor_forest.monster = ghost2
+    frostfall_glacier.monster = troll1
+    silverstrand_beach.monster = werewolf1
+    moonlit_cove.monster = troll2
+    glade_grasslands.monster = troll3
+    avalon.monster = werewolf3
+    luminara_falls.monster = vampire2
+    mistral_bay.monster = demon1
+    thunderpeak_summit.monster = vampire1
+    shadowfen_swamp.monster = vampire3
+    shadow_peak.monster = werewolf2
+    crimsonreach_fortress.monster = demon2
+    serpents_labrynth.monster = dragon1
+    obsidian_abyss.monster = dragon2
+    wyvern_lair.monster = None
+    zukos_stronghold.monster = dragon3
+    
 
     # WEAPONS
     excalibur = Item("Excalibur", "WEAPON", "Legendary Sword", 10, None, None, 15)
