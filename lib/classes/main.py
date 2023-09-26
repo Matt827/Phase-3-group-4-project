@@ -123,8 +123,8 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
         else:
             prev_room = current_room
             current_room = next_room
-            print(f"current: {current_room.name}")
-            print(f"prev: {prev_room.name}")
+            print(f"current room: {current_room.name}")
+            print(f"previous room: {prev_room.name}")
 
         # if current_room != None:
         #     direction = user_input[3:]
@@ -135,6 +135,18 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
 
     def view_info():
         player.display_info()
+        
+    def view_inventory():
+        player.display_inventory()
+    
+    def back():
+        global current_room
+        global prev_room
+        temp = prev_room
+        prev_room = current_room
+        current_room = temp
+        print(f"current room: {current_room.name}")
+        print(f"previous room: {prev_room.name}")
 
     while True:
         user_input = input(">> ")
@@ -147,8 +159,12 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
             go_direction(user_input)
         elif user_input == "go right":
             go_direction(user_input)
+        elif user_input == "go back":
+            back()
         elif user_input == "view info":
             view_info()
+        elif user_input == "view inventory":
+            view_inventory()
         else:
             print("Choose a valid direction. ex. 'go left', 'go right'")
 
