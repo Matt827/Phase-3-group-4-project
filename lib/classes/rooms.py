@@ -24,7 +24,7 @@ class Room:
     def display_info(self):
         print(f'''
             location: {self.name}
-            monster: {self.monster}
+            monster: {self.monster.name if self.monster != None else None}
             shop: {self.shop}
             gold: {self.gold}
               ''')
