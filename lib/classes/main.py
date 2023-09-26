@@ -163,8 +163,9 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         
     def help():
         print('''    Commands list:
-    go up,  go down,  go left,  go right,  go back, 
-    view info,  view inventory,  location details, 
+    Directions:  go up,  go down,  go left,  go right,  go back, 
+    Information:  view info,  view inventory,  location details,
+    Battle:  attack 
               ''')
 
     def view_info():
@@ -185,15 +186,13 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         print(f"current room: {current_room.name}")
         print(f"previous room: {prev_room.name}")
 
-    def back():
-        global current_room
-        global prev_room
-        temp = prev_room
-        prev_room = current_room
-        current_room = temp
-        print(f'current:{current_room.name}')
-        print(f'previous:{prev_room.name}')
-
+    def attack():
+        print(f"you did {player.attack} damage! the monsters hp is {current_room.monster.hp - player.attack}")
+        print(f"the {current_room.monster.name} did {current_room.monster.attack} damage! your hp is now {player.hp - current_room.monster.attack}")
+        
+    def drink_potion():
+        player.drink_potion()
+    
     while True:
         user_input = input(">> ")
 
@@ -215,6 +214,10 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             view_info()
         elif user_input == "location details":
             view_room()
+        elif user_input == "attack":
+            attack()
+        elif user_input == "drink potion":
+            drink_potion()
         else:
             print("Choose a valid input, use 'help' for more details.")
 

@@ -26,3 +26,13 @@ class Player:
         else:
             for item in self.inventory:
                 print(f"{item.item_type}: {item.name}")
+                
+    def drink_potion(self):
+        for item in self.inventory:
+            if item.name == 'Vitality Elixir':
+                self.health += item.potion
+                self.inventory.remove(item)
+                print(f"Your health was increased by {item.potion}, it is now {self.health}!")
+            
+
+            
