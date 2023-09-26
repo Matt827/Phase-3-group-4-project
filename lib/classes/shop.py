@@ -1,4 +1,6 @@
 
 class Shop:
-    def __init__(self, items):
-        self.items = items
+    def __init__(self,name, item):
+        self.name = name
+        self.items = []
+        self.items.append(item)

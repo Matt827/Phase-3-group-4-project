@@ -7,7 +7,7 @@ class Player:
         self.defense = 0
         self.hp = self.health + self.defense
         self.attack = 5
-        self.gold = 0
+        self.gold = 1000
         self.inventory = []
 
     def display_info(self):
