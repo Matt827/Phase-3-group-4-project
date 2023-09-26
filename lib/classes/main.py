@@ -61,9 +61,9 @@ def main():
     
     # Game Introduction
     name = input("What is your name, hero? ")
-    player_name = Player(name)
+    player = Player(name)
     print(f'''
-Once upon a time, in the mystical realm of Eldoria, there was a fallen king named {player_name.name}. 
+Once upon a time, in the mystical realm of Eldoria, there was a fallen king named {player.name}. 
 He had once ruled over a prosperous kingdom, but his reign had been marred by a black dragon. 
 The Black Dragon took control of the entire kingdom and took his people into captivity. 
 He must now advenmture through the land of Elda, battling monsters and foes, and eventually defeating the Black Dragon, Zuko to free his people and reclaim his kingdom.''')
@@ -133,6 +133,8 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
         # else:
         #    print("Not working!")
 
+    def view_info():
+        player.display_info()
 
     while True:
         user_input = input(">> ")
@@ -145,6 +147,8 @@ He must now advenmture through the land of Elda, battling monsters and foes, and
             go_direction(user_input)
         elif user_input == "go right":
             go_direction(user_input)
+        elif user_input == "view info":
+            view_info()
         else:
             print("Choose a valid direction. ex. 'go left', 'go right'")
 
