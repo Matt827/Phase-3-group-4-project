@@ -8,12 +8,12 @@ class Room:
         self.shop = shop
         self.gold = gold
 
-    dict = {
-        "up": None,
-        "down": None,
-        "left": None,
-        "right": None
-    }
+        self.dict = {
+            "up": None,
+            "down": None,
+            "left": None,
+            "right": None
+        }
 
     def room_directions(self, room_up, room_down, room_left, room_right):
         self.dict["up"] = room_up
