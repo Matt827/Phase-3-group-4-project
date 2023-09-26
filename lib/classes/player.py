@@ -7,7 +7,7 @@ class Player:
         self.defense = 0
         self.hp = self.health + self.defense
         self.attack = 5
-        self.gold = 0
+        self.gold = 1000
         self.inventory = []
 
     def display_info(self):
@@ -26,13 +26,3 @@ class Player:
         else:
             for item in self.inventory:
                 print(f"{item.item_type}: {item.name}")
-                
-    def drink_potion(self):
-        for item in self.inventory:
-            if item.name == 'Vitality Elixir':
-                self.health += item.potion
-                self.inventory.remove(item)
-                print(f"Your health was increased by {item.potion}, it is now {self.health}!")
-            
-
-            

@@ -25,6 +25,6 @@ class Room:
         print(f'''
             location: {self.name}
             monster: {self.monster.name if self.monster != None else None}
-            shop: {self.shop}
+            shop: {True if self.shop != None else False}
             gold: {self.gold}
               ''')
