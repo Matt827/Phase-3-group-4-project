@@ -39,9 +39,12 @@ shop1 = Shop("Store", [excalibur, mjolnir, dragonbone_bow, shadowblade, soul_rea
 
 # SQL COMMANDS
 
+Room.create_table()
 Shop.drop_table()
 Shop.create_table()
 shop1.save()
+
+
 
 Item.drop_table()
 Item.create_table()
