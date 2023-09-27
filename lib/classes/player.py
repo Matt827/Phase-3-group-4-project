@@ -7,7 +7,7 @@ class Player:
         self.hp = 100
         self.max_hp = 100
         self.attack = 5
-        self.gold = 0
+        self.gold = 1000
         self.inventory = []
         self.armor = None
         self.weapon = None
@@ -31,3 +31,6 @@ class Player:
     def display_equipment(self):
         print(f"WEAPON : {self.weapon.name}" if self.weapon != None else f"WEAPON : {self.weapon}")
         print(f"ARMOR : {self.armor.name}" if self.armor != None else f"ARMOR : {self.armor}")
+
+    def take_damage(self, dmg):
+        self.hp -= dmg
