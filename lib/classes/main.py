@@ -94,7 +94,8 @@ def main():
 Once upon a time, in the mystical realm of Eldoria, there was a fallen king named {player.name}. 
 He had once ruled over a prosperous kingdom, but his reign had been marred by a black dragon. 
 The Black Dragon took control of the entire kingdom and took his people into captivity. 
-He must now adventure through the land of Elda, battling monsters and foes, and eventually defeating the Black Dragon, Zuko to free his people and reclaim his kingdom.''')
+He must now adventure through the land of Elda, battling monsters and foes, and eventually defeating the Black Dragon, Zuko to free his people and reclaim his kingdom.
+''')
     
 
     # MONSTERS
@@ -165,9 +166,10 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         #    print("Not working!")
         
     def help():
-        print('''    Commands list:
-    go up,  go down,  go left,  go right,  go back, 
-    view info,  view inventory,  location details, 
+        print('''  Commands list:
+    Directions:  go up,  go down,  go left,  go right,  go back, 
+    Information:  view info,  view inventory,  location info,  shop 
+    Battle:  attack,  retreat
               ''')
 
     def view_info():
@@ -199,6 +201,45 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
                         player.inventory.append(selected_item[0])
                         print(f"Shop Owner: Thanks for your purchase of {selected_item[0].name} ! Goodbye!")
                         break
+                
+    def battle():
+        if current_room.monster == None:
+            print("There are no monsters in this room.")
+        else:
+            print(f"You are in battle with {current_room.monster.name}!")
+            while True:
+                battle_input = input("attack or retreat! >>")
+                if battle_input == "attack":
+                    current_room.monster.take_damage(player.attack)
+                    print(f"You did {player.attack} damage {current_room.monster.name} has {current_room.monster.hp} health.")
+                    if current_room.monster.hp > 0:
+                        player.take_damage(current_room.monster.attack)
+                        if player.hp <= 0:
+                            print(f"You have been defeated by {current_room.monster.name}...")
+                            print(f"Return when you have become stronger.")
+                            #player and monster hp should be reset
+                            player.hp = player.health + player.defense
+                            
+                            break
+                        print(f"You took {current_room.monster.attack} damage, you now have {player.hp} health.")
+                    else:
+                        print(f"{current_room.monster.name} has been vanquished!")
+                        #player hp should be reset
+                        player.hp = player.health + player.defense
+                        #monster should drop items
+                        
+                        #monster should be deleted
+                        current_room.monster = None
+                        break     
+                elif battle_input == "retreat":
+                    print("You have retreated from battle.")
+                    #player and monster hp should be reset
+                    player.hp = player.health + player.defense
+                    current_room.monster.hp = current_room.monster.health
+                    break
+                else:
+                    print("Command invalid, you are in battle! you must attack or retreat!")
+
     
     def back():
         global current_room
@@ -233,6 +274,8 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             view_room()
         elif user_input == "shop":
             shop()
+        elif user_input == "battle":
+            battle()
         else:
             print("Choose a valid input, use 'help' for more details.")
 

@@ -23,8 +23,8 @@ class Room:
         
     def display_info(self):
         print(f'''
-            location: {self.name}
-            monster: {self.monster.name if self.monster != None else None}
-            shop: {True if self.shop != None else False}
-            gold: {self.gold}
+    location: {self.name}
+    monster: {self.monster.name if self.monster != None else None}
+    shop: {True if self.shop != None else False}
+    gold: {self.gold}
               ''')
