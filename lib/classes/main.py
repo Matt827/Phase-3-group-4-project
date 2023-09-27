@@ -34,15 +34,15 @@ king_armor_set = Item("King Armor Set", "ARMOR", 0, 0, 100, 0, 110)
 # POTION
 health_potion = Item("Vitality Elixir", "POTION", 0, 0, 0, 25, 50)
 
+
 shop1 = Shop("Store", [excalibur, mjolnir, dragonbone_bow, shadowblade, soul_reaver, moonlit_dagger, serpents_fang, stormcaller, dwarven_crossbow, warhammer_of_the_titans, knight_armor_set, noble_lord_armor_set, commander_armor_set, king_armor_set, health_potion])
 
-
-# SQL COMMANDS
-
+# SQL COMMANDS For SHOP
 Shop.drop_table()
 Shop.create_table()
 shop1.save()
 
+# SQL COMMANDS For ITEMS
 Item.drop_table()
 Item.create_table()
 excalibur.save()
@@ -60,9 +60,6 @@ noble_lord_armor_set.save()
 commander_armor_set.save()
 king_armor_set.save()
 health_potion.save()
-
-
-
 
 
 # LOCATIONS
@@ -146,6 +143,25 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     dragon2 = Monster("Celestiax", 100, 200, 20, 30, ["Dragon Scale", "Dragon Tooth"])
     dragon3 = Monster("Zuko", 100, 200, 30, 30, ["Dragon Scale", "Dragon Tooth"])
     
+    #SQL COMMANDS For MONSTERS
+    Monster.drop_table()
+    Monster.create_table()
+    ghost1.save()
+    ghost2.save()
+    ghost3.save()
+    troll1.save()
+    troll2.save()
+    troll3.save()
+    vampire1.save()
+    vampire2.save()
+    vampire3.save()
+    demon1.save()
+    demon2.save()
+    demon3.save()
+    dragon1.save()
+    dragon2.save()
+    dragon3.save()
+    
     #Assign monsters to rooms
     phoenixreach_city.monster = demon3
     moonshadow_grove.monster = ghost1
@@ -169,7 +185,6 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     zukos_stronghold.monster = dragon3
    
     player.inventory.append(excalibur)
-    
     player.inventory.append(shadowblade)
 
     keys = {
