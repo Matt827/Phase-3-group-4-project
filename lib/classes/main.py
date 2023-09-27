@@ -6,6 +6,7 @@ from rooms import Room
 from item import Item
 from monster import Monster
 from shop import Shop
+from __init__ import CONN, CURSOR
 
 # result = pyfiglet.figlet_format("Adventures of Mattanoman")
 
@@ -13,28 +14,55 @@ from shop import Shop
 
 
  # WEAPONS
-excalibur = Item("Excalibur", "WEAPON", "Legendary Sword", 10, None, None, 15)
-mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, None, None, 25)
-dragonbone_bow = Item("Dragonbone Bow", "WEAPON", "Wyrmstring Bow", 27, None, None, 32)
-shadowblade = Item("Shadow Blade", "WEAPON", "Stealthy Dagger", 15, None, None, 20)
-soul_reaver = Item("Soul Reaver", "WEAPON", "Cursed Sword", 30, None, None, 35)
-moonlit_dagger = Item("Moonlit Dagger", "WEAPON", "Silvered Blade", 13, None, None, 17)
-serpents_fang = Item("Serpent's Fang", "WEAPON", "Venomous Whip", 16, None, None, 21)
-stormcaller = Item("Stormcaller", "WEAPON", "Lightning Sword", 27, None, None, 32)
-dwarven_crossbow = Item("Dwarvan Crossbow", "WEAPON", "Stour Crossbow", 12, None, None, 17)
-warhammer_of_the_titans = Item("Warhammer of the Titans", "WEAPON", "Colossal Warhammer", 35, None, None, 40)
+excalibur = Item("Excalibur", "WEAPON", "Legendary Sword", 10, 0, 0, 15)
+mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, 0, 0, 25)
+dragonbone_bow = Item("Dragonbone Bow", "WEAPON", "Wyrmstring Bow", 27, 0, 0, 32)
+shadowblade = Item("Shadow Blade", "WEAPON", "Stealthy Dagger", 15, 0, 0, 20)
+soul_reaver = Item("Soul Reaver", "WEAPON", "Cursed Sword", 30, 0, 0, 35)
+moonlit_dagger = Item("Moonlit Dagger", "WEAPON", "Silvered Blade", 13, 0, 0, 17)
+serpents_fang = Item("Serpent's Fang", "WEAPON", "Venomous Whip", 16, 0, 0, 21)
+stormcaller = Item("Stormcaller", "WEAPON", "Lightning Sword", 27, 0, 0, 32)
+dwarven_crossbow = Item("Dwarvan Crossbow", "WEAPON", "Stour Crossbow", 12, 0, 0, 17)
+warhammer_of_the_titans = Item("Warhammer of the Titans", "WEAPON", "Colossal Warhammer", 35, 0, 0, 40)
 
 # ARMOR
-knight_armor_set = Item("Knights Armor Set", "ARMOR", "none", None, 25, None, 35)
-noble_lord_armor_set = Item("Noble Lord Armor Set", "ARMOR", "none", None, 50, None, 60)
-commander_armor_set = Item("Commander Armor Set", "ARMOR", "none", None, 75, None, 85)
-king_armor_set = Item("King Armor Set", "ARMOR", "none", None, 100, None, 110)
+knight_armor_set = Item("Knights Armor Set", "ARMOR", 0, 0, 25, 0, 35)
+noble_lord_armor_set = Item("Noble Lord Armor Set", "ARMOR", 0, 0, 50, 0, 60)
+commander_armor_set = Item("Commander Armor Set", "ARMOR", 0, 0, 75, 0, 85)
+king_armor_set = Item("King Armor Set", "ARMOR", 0, 0, 100, 0, 110)
 
 # POTION
-health_potion = Item("Vitality Elixir", "POTION", "none", None, None, 25, 50)
+health_potion = Item("Vitality Elixir", "POTION", 0, 0, 0, 25, 50)
 
 shop1 = Shop("Store", [excalibur, mjolnir, dragonbone_bow, shadowblade, soul_reaver, moonlit_dagger, serpents_fang, stormcaller, dwarven_crossbow, warhammer_of_the_titans, knight_armor_set, noble_lord_armor_set, commander_armor_set, king_armor_set, health_potion])
-    
+
+
+# SQL COMMANDS
+
+Shop.drop_table()
+Shop.create_table()
+shop1.save()
+
+Item.drop_table()
+Item.create_table()
+excalibur.save()
+mjolnir.save()
+dragonbone_bow.save()
+shadowblade.save()
+soul_reaver.save()
+moonlit_dagger.save()
+serpents_fang.save()
+stormcaller.save()
+dwarven_crossbow.save()
+warhammer_of_the_titans.save()
+knight_armor_set.save()
+noble_lord_armor_set.save()
+commander_armor_set.save()
+king_armor_set.save()
+health_potion.save()
+
+
+
 
 
 # LOCATIONS
