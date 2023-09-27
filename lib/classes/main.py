@@ -99,9 +99,9 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     
 
     # MONSTERS
-    ghost1 = Monster("Ghost", 25, 30, 5, 40, ["Ghostly Essence", "Gold Coin"])
-    ghost2 = Monster("Ghost", 25, 30, 5, 40, ["Ghostly Essence", "Gold Coin"])
-    ghost3 = Monster("Ghost", 25, 30, 5, 40, ["Ghostly Essence", "Gold Coin"])
+    ghost1 = Monster("Ghost", 25, 30, 5, 40, [knight_armor_set, moonlit_dagger])
+    ghost2 = Monster("Ghost", 25, 30, 5, 40, [knight_armor_set, moonlit_dagger])
+    ghost3 = Monster("Ghost", 25, 30, 5, 40, [knight_armor_set, moonlit_dagger])
     troll1 = Monster("Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"])
     troll2 = Monster("Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"])
     troll3 = Monster("Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"])
@@ -139,8 +139,6 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     obsidian_abyss.monster = dragon2
     wyvern_lair.monster = None
     zukos_stronghold.monster = dragon3
-    
-
    
     player.inventory.append(excalibur)
     
@@ -185,6 +183,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     def view_room():
         current_room.display_info()
 
+
     def shop():
         if current_room.shop == None:
             print("There is no shop here")
@@ -205,44 +204,59 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
                         player.inventory.append(selected_item[0])
                         print(f"Shop Owner: Thanks for your purchase of {selected_item[0].name} ! Goodbye!")
                         break
-                
+
+    def drops():
+        monster_drops = current_room.monster.drops
+
+        for drop in monster_drops:
+            if drop != None:
+                print(f"{current_room.monster.name} dropped {drop.name} and now in inventory")
+                player.inventory.append(drop)
+
+        
+
     def battle():
         if current_room.monster == None:
             print("There are no monsters in this room.")
         else:
             print(f"You are in battle with {current_room.monster.name}!")
             while True:
-                battle_input = input("attack or retreat! >>")
+                # PLAYER ATTACKS
+                battle_input = input("attack or retreat? >> ")
                 if battle_input == "attack":
+                    # PLAYER DOES DMG TO MONSTER
                     current_room.monster.take_damage(player.attack)
                     print(f"You did {player.attack} damage {current_room.monster.name} has {current_room.monster.hp} health.")
-                    if current_room.monster.hp > 0:
-                        player.take_damage(current_room.monster.attack)
-                        if player.hp <= 0:
-                            print(f"You have been defeated by {current_room.monster.name}...")
-                            print(f"Return when you have become stronger.")
-                            #player and monster hp should be reset
-                            player.hp = player.max_hp
-                            
-                            break
-                        print(f"You took {current_room.monster.attack} damage, you now have {player.hp} health.")
-                    else:
+
+                    # MONSTER DIES
+                    if (current_room.monster.hp <= 0):
                         print(f"{current_room.monster.name} has been vanquished!")
                         #player hp should be reset
                         player.hp = player.max_hp
                         #monster should drop items
-                        
+                        drops()
                         #monster should be deleted
                         current_room.monster = None
-                        break     
+                        break
+
+                    # MONSTER DOES DMG TO PLAYER
+                    player.take_damage(current_room.monster.attack)
+                    print(f"You took {current_room.monster.attack} damage, you now have {player.hp} health.")
+
+                    # PLAYER DIES
+                    if (player.hp <= 0):
+                        print(f"You have been defeated by {current_room.monster.name}...")
+                        return False
+                    
                 elif battle_input == "retreat":
                     print("You have retreated from battle.")
                     #player and monster hp should be reset
                     player.hp = player.health + player.defense
                     current_room.monster.hp = current_room.monster.health
                     break
-                else:
-                    print("Command invalid, you are in battle! you must attack or retreat!")
+
+            # INDICATES THAT THE PLAYER IS ALIVE
+            return True
 
     
     def back():
