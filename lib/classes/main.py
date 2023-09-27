@@ -144,6 +144,8 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
    
     player.inventory.append(excalibur)
     
+    player.inventory.append(shadowblade)
+
     def go_direction(user_input):
         noneType = type(None)
         global current_room
@@ -155,15 +157,15 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         else:
             prev_room = current_room
             current_room = next_room
+
+            if current_room.gold > 0:
+                print(f"Hey you found {current_room.gold} gold in {current_room.name}")
+                player.gold += current_room.gold
+                current_room.gold = 0
+
             print(f"current room: {current_room.name}")
             print(f"previous room: {prev_room.name}")
 
-        # if current_room != None:
-        #     direction = user_input[3:]
-        #     current_room = current_room.dict[direction].name
-        #     print(current_room)
-        # else:
-        #    print("Not working!")
         
     def help():
         print('''  Commands list:
@@ -176,7 +178,9 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         player.display_info()
         
     def view_inventory():
+        print()
         player.display_inventory()
+        print()
         
     def view_room():
         current_room.display_info()
@@ -218,14 +222,14 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
                             print(f"You have been defeated by {current_room.monster.name}...")
                             print(f"Return when you have become stronger.")
                             #player and monster hp should be reset
-                            player.hp = player.health + player.defense
+                            player.hp = player.max_hp
                             
                             break
                         print(f"You took {current_room.monster.attack} damage, you now have {player.hp} health.")
                     else:
                         print(f"{current_room.monster.name} has been vanquished!")
                         #player hp should be reset
-                        player.hp = player.health + player.defense
+                        player.hp = player.max_hp
                         #monster should drop items
                         
                         #monster should be deleted
@@ -250,6 +254,59 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         print(f"current room: {current_room.name}")
         print(f"previous room: {prev_room.name}")
 
+    
+    def view_equipment():
+        player.display_equipment()
+
+    def equip(user_input):
+        item_name = user_input[6:]
+        curr_item = None
+        for item in player.inventory:
+            if item.name.lower() == item_name.lower():
+                curr_item = item
+            
+        if curr_item is None:
+            print(f"{item_name} not found in inventory")
+            return
+    
+        if curr_item.item_type == "WEAPON" and player.weapon != curr_item:
+            if (player.weapon != None):
+                player.attack -= player.weapon.damage
+            player.weapon = curr_item
+            player.attack += curr_item.damage
+            print(f"SUCCESSFULLY EQUIPPED {curr_item.name}")
+        elif curr_item.item_type == "ARMOR" and player.armor != curr_item:
+            if (player.armor != None):
+                player.max_hp -= player.armor.defense
+                player.hp = player.max_hp
+            player.armor = curr_item
+            player.max_hp += curr_item.defense
+            player.hp = player.max_hp
+            print(f"SUCCESSFULLY EQUIPPED {curr_item.name}")
+        else:
+            print("CANNOT EQUIP")
+
+    def unequip(user_input):
+        item_name = user_input[8:]
+
+        if (player.armor != None):
+            if (player.armor.name.lower() == item_name.lower()):
+                player.max_hp -= player.armor.defense
+                player.hp = player.max_hp
+                player.armor = None
+                print(f"SUCCESSFULLY UNEQUIPPED {item_name}")
+            else:
+                print(f"{item_name} IS NOT EQUIPPED")
+
+
+        if (player.weapon != None):
+            if (player.weapon.name.lower() == item_name.lower()):
+                player.attack -= player.weapon.damage
+                player.weapon = None
+                print(f"SUCCESSFULLY UNEQUIPPED {item_name}")
+            else:
+                print(f"{item_name} IS NOT EQUIPPED")
+
 
     while True:
         user_input = input(">> ")
@@ -266,10 +323,16 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             back()
         elif user_input == "help":
             help()
-        elif user_input == "view inventory":
+        elif user_input == "inventory":
             view_inventory()
         elif user_input == "view info":
             view_info()
+        elif user_input == "equipment":
+            view_equipment()
+        elif user_input[:5] == "equip" and len(user_input) > 5 and user_input[5] == " ":
+            equip(user_input)
+        elif user_input[:7] == "unequip" and len(user_input) > 7 and user_input[7] == " ":
+            unequip(user_input)
         elif user_input == "location details":
             view_room()
         elif user_input == "shop":
