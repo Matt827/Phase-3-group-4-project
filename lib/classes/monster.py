@@ -1,9 +1,13 @@
 
 class Monster:
-    def __init__(self, name, gold, hp, attack, speed, drops):
+    def __init__(self, name, gold, health, attack, speed, drops):
         self.name = name
         self.gold = gold
-        self.hp = hp
+        self.health = health
+        self.hp = health
         self.attack = attack
         self.speed = speed
         self.drops = drops
+        
+    def take_damage(self, damage):
+        self.hp -= damage

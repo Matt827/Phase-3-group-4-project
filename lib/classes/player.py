@@ -12,12 +12,12 @@ class Player:
 
     def display_info(self):
         print(f'''
-        name: {self.name}
-        health: {self.health}
-        defense: {self.defense}
-        hp: {self.hp}
-        attack: {self.attack}
-        gold: {self.gold}
+    name: {self.name}
+    health: {self.health}
+    defense: {self.defense}
+    hp: {self.hp}
+    attack: {self.attack}
+    gold: {self.gold}
         ''')
         
     def display_inventory(self):
@@ -26,3 +26,6 @@ class Player:
         else:
             for item in self.inventory:
                 print(f"{item.item_type}: {item.name}")
+                
+    def take_damage(self, damage):
+        self.hp -= damage
