@@ -144,6 +144,39 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     
     player.inventory.append(shadowblade)
 
+    keys = {
+        "glacier_key" : False,
+        "water_key" : False,
+        "flame_key" : False
+    }
+
+    def glacier_puzzle():
+
+        print("""Welcome to FrostFall Glacier. The land of the ice! The glacier key lives here.
+              However, the binicles (binary icicles) are preventing you from reaching the key. It is your duty to
+              solve and shatter these binicles to obtain the key. Good luck! """)
+
+        def puzzle(binary, answer):
+            while True:
+                print(f"BINARY NUMBER: {binary}")
+                user_input = input("What is this binary number in decimal? >> ")
+                if user_input == answer:
+                    print("Correct!")
+                    break
+                else:
+                    print("Not quite. Try again")
+                    continue
+            
+        puzzle("10101010", "170")
+        puzzle("11110001", "241")
+        puzzle("01010101", "85")
+
+        print("Great you now have the glacier key! You are now able to move and collect the rest of the keys")
+
+        keys["glacier_key"] = True
+        print(keys)
+
+
     def go_direction(user_input):
         noneType = type(None)
         global current_room
@@ -156,6 +189,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             prev_room = current_room
             current_room = next_room
 
+
             if current_room.gold > 0:
                 print(f"Hey you found {current_room.gold} gold in {current_room.name}")
                 player.gold += current_room.gold
@@ -163,6 +197,13 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
 
             print(f"current room: {current_room.name}")
             print(f"previous room: {prev_room.name}")
+
+            if current_room == frostfall_glacier and keys["glacier_key"] == False:
+                glacier_puzzle()
+            elif current_room == silverstrand_beach and keys["water_key"] == False:
+                pass
+            elif current_room == phoenixreach_city and keys["flame_key"] == False:
+                pass
 
         
     def help():
@@ -365,6 +406,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
 
 
     while True:
+        alive = True
         user_input = input(">> ")
 
         if user_input == "go up":
@@ -394,9 +436,13 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         elif user_input == "shop":
             shop()
         elif user_input == "battle":
-            battle()
+            alive = battle()
         else:
             print("Choose a valid input, use 'help' for more details.")
+
+        if (alive == False):
+            print("You're dead")
+            break
 
 
 main()

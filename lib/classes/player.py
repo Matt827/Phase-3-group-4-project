@@ -4,8 +4,8 @@ class Player:
     def __init__(self, name):
         self.name = name
         self.defense = 0
-        self.hp = 100
-        self.max_hp = 100
+        self.hp = 5
+        self.max_hp = 5
         self.attack = 5
         self.gold = 1000
         self.inventory = []
