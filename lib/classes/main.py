@@ -144,6 +144,28 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     dragon2 = Monster("Celestiax", 100, 200, 20, 30, ["Dragon Scale", "Dragon Tooth"])
     dragon3 = Monster("Zuko", 100, 200, 30, 30, ["Dragon Scale", "Dragon Tooth"])
     
+    # SQL COMMANDS For MONSTERS
+    Monster.drop_table()
+    Monster.create_table()
+    ghost1.save()
+    ghost2.save()
+    ghost3.save()
+    troll1.save()
+    troll2.save()
+    troll3.save()
+    vampire1.save()
+    vampire2.save()
+    vampire3.save()
+    werewolf1.save()
+    werewolf2.save()
+    werewolf3.save()
+    demon1.save()
+    demon2.save()
+    demon3.save()
+    dragon1.save()
+    dragon2.save()
+    dragon3.save()
+    
     #Assign monsters to rooms
     phoenixreach_city.monster = demon3
     moonshadow_grove.monster = ghost1
