@@ -176,34 +176,74 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         player.display_info()
         
     def view_inventory():
-        print()
+        print("YOUR INVENTORY: ")
         player.display_inventory()
         print()
         
     def view_room():
         current_room.display_info()
 
+    def shop_view():
+         for shop_item in current_room.shop.items:
+                print(f"TYPE: {shop_item.item_type}  NAME: {shop_item.name}  COST: {shop_item.cost}\n")
+
+    def shop_buy():
+        item_input = input("What item do you want to buy? >> ")
+        selected_item = None
+        for shop_item in current_room.shop.items:
+            if shop_item.name.lower() == item_input.lower():
+                selected_item = shop_item
+
+        if selected_item == None:
+            print("Item does not exist")
+            return
+
+        if (player.gold >= selected_item.cost):
+            current_room.shop.items.remove(selected_item)
+            player.gold -= selected_item.cost
+            player.inventory.append(selected_item)
+            print(f"SUCCESSFULLY PURCHASED {selected_item.name}")
+        else:
+            print("Shop Onwer: You don't have enough gold!")
+        
+    def shop_sell():
+        while True:
+            view_inventory()
+
+            item_input = input("Shop Owner: What are you selling? >> ")
+            selected_item = None
+
+            for item in player.inventory:
+                if item.name.lower() == item_input.lower():
+                    selected_item = item
+
+            if selected_item == None:
+                print("Item does not exist in your inventory")
+                continue
+            else:
+                player.inventory.remove(selected_item)
+                player.gold += selected_item.cost
+                current_room.shop.items.append(selected_item)
+                break
 
     def shop():
         if current_room.shop == None:
             print("There is no shop here")
         else:
             print("Shop Owner:   Welcome!! What would you like?\n")
-            for shop_item in current_room.shop.items[0]:
-                print(f"TYPE: {shop_item.item_type}  NAME: {shop_item.name}  COST: {shop_item.cost}\n")
+            shop_view()
             while True:
-                shop_input = input("Shop Owner: What is the NAME of the item you want to buy? >> ")
-                selected_item = [item for item in current_room.shop.items[0] if item.name == shop_input.title()]
-                selected_name = str(selected_item[0].name)
-                if shop_input.lower() == selected_name.lower():
-                    if player.gold < selected_item[0].cost:
-                        print("Shop Owner: That's not enough gold! Get out of my store!")
-                        break
-                    else:
-                        player.gold -= selected_item[0].cost
-                        player.inventory.append(selected_item[0])
-                        print(f"Shop Owner: Thanks for your purchase of {selected_item[0].name} ! Goodbye!")
-                        break
+                print(f"GOLD: {player.gold}")
+                shop_input = input("Shop Owner: Would you like to buy, sell, view or quit? >> ")
+                if shop_input == "view":
+                    shop_view()
+                elif shop_input == "buy":
+                    shop_buy()
+                elif shop_input == "sell":
+                    shop_sell()
+                elif shop_input == "quit":
+                    print("Shop Owner: Thank you for stopping by!")
+                    break
 
     def drops():
         monster_drops = current_room.monster.drops
