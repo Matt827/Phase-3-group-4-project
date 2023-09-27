@@ -149,6 +149,11 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         "water_key" : False,
         "flame_key" : False
     }
+    
+    def display_keys():
+        print("KEYS: ")
+        for key in keys:
+            print(f"{key}: {keys[key]}")
 
     def glacier_puzzle():
 
@@ -171,11 +176,70 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         puzzle("11110001", "241")
         puzzle("01010101", "85")
 
-        print("Great you now have the glacier key! You are now able to move and collect the rest of the keys")
+        print("Great you now have the glacier key!")
 
         keys["glacier_key"] = True
-        print(keys)
 
+    def water_puzzle():
+
+        print("""Welcome to Silverstrand Beach. Your feet on the sands feel nice and warm. However, you
+              have a task to compelete. To get to the water key, your job is to decipher these floating
+              (decimal) numbers to text. Good luck!
+              
+              side note: 
+                - use the ASCII table
+                - no spaces (except when told to space)
+                - case sensitive
+              """)
+
+        def puzzle(ascii, answer):
+            while True:
+                print(f"DECIMAL NUMBERS: {ascii}")
+                user_input = input("Convert decimal numbers to characters >> ")
+                if user_input == answer:
+                    print("Correct!")
+                    break
+                else:
+                    print("Not quite. Try again")
+                    continue
+
+        puzzle("82 97 99 104 101 108", "Rachel")
+        puzzle("83 76 73 84 72 69 82", "SLITHER")
+        puzzle("79 110 101 SPACE 80 105 101 99 101", "One Piece")
+
+        print("Nice! You now have the water key!")
+
+        keys["water_key"] = True
+
+    def flame_puzzle():
+
+        print("""Welcome to Pheonixreach city, the civilization of flame.
+              The flame key is surrounded by flames. The flames are flashing bright continously.
+              Your task is to decipher the flashes and obtain the flame key! Good luck! 
+              
+              side note:
+                - no spaces (except when told)
+                - use morse code translator
+                - not case sensitive """)
+
+        def puzzle(morse, answer):
+            while True:
+                print(f"MORSE CODE: {morse}")
+                user_input = input("Convert the morse code to text >> ")
+                if user_input.lower() == answer.lower():
+                    print("Correct")
+                    break
+                else:
+                    print("Not quite. Try again")
+                    continue
+
+        puzzle(".-.. | . | -... | .-. | --- | -.", "lebron")
+        puzzle(".--. | -.-- | - | .... | --- | -.", "python")
+        puzzle("--. | .-. | . | . | -- SPACE .-.. | . | .", "greem lee")
+
+        print("Congrats! You now have the flame key")
+
+        keys["flame_key"] = True
 
     def go_direction(user_input):
         noneType = type(None)
@@ -183,6 +247,13 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         global prev_room
         direction = user_input[3:]
         next_room = current_room.dict[direction]
+
+        if (next_room == zukos_stronghold):
+            for key in keys:
+                if keys[key] == False:
+                    print("Collect all the keys first")
+                    return
+
         if (isinstance(next_room, noneType)):
             print("Not a room")
         else:
@@ -201,9 +272,9 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             if current_room == frostfall_glacier and keys["glacier_key"] == False:
                 glacier_puzzle()
             elif current_room == silverstrand_beach and keys["water_key"] == False:
-                pass
+                water_puzzle()
             elif current_room == phoenixreach_city and keys["flame_key"] == False:
-                pass
+                flame_puzzle()
 
         
     def help():
@@ -437,6 +508,8 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             shop()
         elif user_input == "battle":
             alive = battle()
+        elif user_input == "keys":
+            display_keys()
         else:
             print("Choose a valid input, use 'help' for more details.")
 
