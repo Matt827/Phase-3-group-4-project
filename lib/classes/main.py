@@ -144,6 +144,12 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     
     player.inventory.append(shadowblade)
 
+    keys = {
+        "glacier_key" : False,
+        "water_key" : False,
+        "flame_key" : False
+    }
+
     def go_direction(user_input):
         noneType = type(None)
         global current_room
@@ -365,6 +371,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
 
 
     while True:
+        alive = True
         user_input = input(">> ")
 
         if user_input == "go up":
@@ -394,9 +401,13 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         elif user_input == "shop":
             shop()
         elif user_input == "battle":
-            battle()
+            alive = battle()
         else:
             print("Choose a valid input, use 'help' for more details.")
+
+        if (alive == False):
+            print("You're dead")
+            break
 
 
 main()

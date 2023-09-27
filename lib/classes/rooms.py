@@ -1,3 +1,4 @@
+from __init__ import CURSOR, CONN
 
 class Room:
 
@@ -28,3 +29,7 @@ class Room:
     shop: {True if self.shop != None else False}
     gold: {self.gold}
               ''')
+        
+    # SQL METHODS
+    
+    
