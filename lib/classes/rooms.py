@@ -8,6 +8,7 @@ class Room:
         self.monster = monster
         self.shop = shop
         self.gold = gold
+        self.save()
 
         self.dict = {
             "up": None,
@@ -31,5 +32,32 @@ class Room:
               ''')
         
     # SQL METHODS
+    @classmethod
+    def create_table(cls):
+        sql = """
+            CREATE TABLE IF NOT EXISTS locations (
+                location_id INTEGER PRIMARY KEY,
+                name TEXT
+            )
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
+    
+    @classmethod
+    def drop_table(cls):
+        sql = """
+            DROP TABLE IF EXISTS locations;
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
+
+    def save(self):
+        sql = """
+            INSERT INTO locations (name) VALUES (?)
+        """
+
+        CURSOR.execute(sql, (self.name, ))
+        CONN.commit()
+        
     
     
