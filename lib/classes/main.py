@@ -252,7 +252,9 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             if drop != None:
                 print(f"{current_room.monster.name} dropped {drop.name} and now in inventory")
                 player.inventory.append(drop)
-
+        print(f"Monster dropped {current_room.monster.gold} gold")
+        player.gold += current_room.monster.gold
+        print(f"GOLD: {player.gold}")
         
 
     def battle():
