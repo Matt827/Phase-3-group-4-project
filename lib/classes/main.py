@@ -52,7 +52,28 @@ Monster.create_table()
 
 Item.drop_table()
 Item.create_table()
+excalibur.save()
+mjolnir.save()
+dragonbone_bow.save()
+shadowblade.save()
+soul_reaver.save()
+moonlit_dagger.save()
+serpents_fang.save()
+stormcaller.save()
+dwarven_crossbow.save()
+warhammer_of_the_titans.save()
 
+# ARMOR
+knight_armor_set.save()
+noble_lord_armor_set.save()
+commander_armor_set.save()
+king_armor_set.save()
+
+# POTION
+health_potion1.save()
+health_potion2.save()
+health_potion3.save()
+health_potion4.save()
 
 # LOCATIONS
 moonshadow_grove = Room('Moonshadow Grove', 'Moonshadow Grove, a mystical forest bathed in the silvery glow of the moon, where ancient, luminescent flora and fauna thrive, and whispers of forgotten enchantments linger in the cool night air.', None, shop1, 25)
@@ -137,6 +158,25 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     dragon1 = Monster("Zephyrion", 100, 200, 20, 30, [warhammer_of_the_titans], 17, dragon_1_avatar)
     dragon2 = Monster("Celestiax", 100, 200, 20, 30, [king_armor_set], 18, dragon_2_avatar)
     dragon3 = Monster("Zuko", 100, 200, 30, 30, [health_potion4], 20, dragon_3_avatar)
+
+    ghost1.save()
+    ghost2.save()
+    ghost3.save()
+    troll1.save()
+    troll2.save()
+    troll3.save()
+    vampire1.save()
+    vampire2.save()
+    vampire3.save()
+    werewolf1.save()
+    werewolf2.save()
+    werewolf3.save()
+    demon1.save()
+    demon2.save()
+    demon3.save()
+    dragon1.save()
+    dragon2.save()
+    dragon3.save()
 
     #Assign monsters to rooms
     phoenixreach_city.monster = demon3
@@ -318,8 +358,15 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
 
     def shop_view():
         # print(Item.view_table())
-        for shop_item in current_room.shop.items:
-                print(f"TYPE: {shop_item.item_type}  NAME: {shop_item.name}  COST: {shop_item.cost}\n")
+        # for shop_item in current_room.shop.items:
+        #         print(f"TYPE: {shop_item.item_type}  NAME: {shop_item.name}  COST: {shop_item.cost}\n")
+        CURSOR.execute("SELECT name, type, description, damage, defense, potion, cost FROM items")
+        CONN.commit()
+        result = CURSOR.fetchall()
+        for item in result:
+            print(str(f"NAME: {item[0]}   TYPE: {item[1]}    DESCRIPTION: {item[2]}    DAMAGE: {item[3]}    DEFENSE: {item[4]}    POTION: {item[5]}     COST: {item[6]} \n"))
+        # print(result)
+
 
     def shop_buy():
         item_input = input("What item do you want to buy? >> ")
@@ -333,6 +380,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             return
 
         if (player.gold >= selected_item.cost):
+            Item.remove_item_shop(selected_item.id)
             current_room.shop.items.remove(selected_item)
             player.gold -= selected_item.cost
             player.inventory.append(selected_item)
@@ -355,7 +403,9 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
                     print("Item does not exist in your inventory")
                     continue
                 else:
+                    selected_item.add_item_shop()
                     player.inventory.remove(selected_item)
+                    print("SOLD")
                     player.gold += selected_item.cost
                     current_room.shop.items.append(selected_item)
                     break
@@ -427,6 +477,8 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
 
                     # PLAYER DIES
                     if (player.hp <= 0):
+                        player_loses = pyfiglet.figlet_format("YOU LOSE")
+                        cprint(player_loses, "red")
                         cprint(f"You have been defeated by {current_room.monster.name}...", "red")
                         return False
                     
@@ -561,6 +613,13 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         if (alive == False):
             print("You're dead")
             break
+
+        CURSOR.execute("SELECT * FROM monsters WHERE name = 'Zuko'")
+        CONN.commit()
+        zuko_result = CURSOR.fetchall()
+        if len(zuko_result) < 1:
+            winning_message = pyfiglet.figlet_format("YOU WIN!!!!!!")
+            cprint(winning_message, "green")
 
 
 main()
