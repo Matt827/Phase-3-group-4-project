@@ -14,11 +14,11 @@ class Player:
 
     def display_info(self):
         print(f'''
-        name: {self.name}
-        hp: {self.hp} / {self.max_hp}
-        defense: {self.defense}
-        attack: {self.attack}
-        gold: {self.gold}
+name: {self.name}
+hp: {self.hp} / {self.max_hp}
+defense: {self.defense}
+attack: {self.attack}
+gold: {self.gold}
         ''')
         
     def display_inventory(self):

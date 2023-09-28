@@ -20,7 +20,7 @@ soul_reaver = Item("Soul Reaver", "WEAPON", "Cursed Sword", 30, 0, 0, 35, 13, 1,
 moonlit_dagger = Item("Moonlit Dagger", "WEAPON", "Silvered Blade", 13, 0, 0, 17, 4, 1, 1)
 serpents_fang = Item("Serpent's Fang", "WEAPON", "Venomous Whip", 16, 0, 0, 21, 7, 1, 1)
 stormcaller = Item("Stormcaller", "WEAPON", "Lightning Sword", 27, 0, 0, 32, 12, 1, 1)
-dwarven_crossbow = Item("Dwarvan Crossbow", "WEAPON", "Stour Crossbow", 12, 0, 0, 17, 3, 1, 1)
+dwarven_crossbow = Item("Dwarven Crossbow", "WEAPON", "Stour Crossbow", 12, 0, 0, 17, 3, 1, 1)
 warhammer_of_the_titans = Item("Warhammer of the Titans", "WEAPON", "Colossal Warhammer", 35, 0, 0, 40, 16, 1, 1)
 
 # ARMOR
@@ -200,10 +200,6 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     wyvern_lair.monster = None
     zukos_stronghold.monster = dragon3
 
-   
-    player.inventory.append(excalibur)
-    player.inventory.append(shadowblade)
-
     keys = {
         "glacier_key" : False,
         "water_key" : False,
@@ -211,18 +207,20 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     }
     
     def display_keys():
+        print()
         print("Keys: ")
         for key in keys:
             print(f"{key}: {keys[key]}")
+        print()
 
     def glacier_puzzle():
         cprint("Your have entered a challenge room! Solve the puzzle to win the key! Collect all three keys to battle the final boss!", "grey")
-        print("")
+        print()
 
         print("""Welcome to FrostFall Glacier. The land of the ice! The glacier key lives here.
 However, the binicles (binary icicles) are preventing you from reaching the key. It is your duty to
 solve and shatter these binicles to obtain the key. Good luck! """)
-        print("")
+        print()
 
         def puzzle(binary, answer):
             while True:
@@ -245,7 +243,7 @@ solve and shatter these binicles to obtain the key. Good luck! """)
 
     def water_puzzle():
         cprint("Your have entered a challenge room! Solve the puzzle to win the key! Collect all three keys to battle the final boss!", "grey")
-        print("")
+        print()
 
         print("""Welcome to Silverstrand Beach. Your feet on the sands feel nice and warm. However, you
 have a task to compelete. To get to the water key, your job is to decipher these floating
@@ -256,7 +254,7 @@ side note:
 - no spaces (except when told to space)
 - case sensitive
 """)
-        print("")
+        print()
 
         def puzzle(ascii, answer):
             while True:
@@ -279,7 +277,7 @@ side note:
 
     def flame_puzzle():
         cprint("Your have entered a challenge room! Solve the puzzle to win the key! Collect all three keys to battle the final boss!", "grey")
-        print("")
+        print()
 
         print("""Welcome to Pheonixreach city, the civilization of flame.
 The flame key is surrounded by flames. The flames are flashing bright continously.
@@ -289,7 +287,7 @@ side note:
 - no spaces (except when told)
 - use morse code translator
 - not case sensitive """)
-        print("")
+        print()
 
         def puzzle(morse, answer):
             while True:
@@ -350,8 +348,8 @@ side note:
     def help():
         print('''  Commands list:
     Directions:  go up,  go down,  go left,  go right,  go back, 
-    Information:  view info,  view inventory,  location info, keys
-    Items: equip,  unequip
+    Information:  view info,  inventory,  location details,  keys
+    Items:  equip,  unequip
     Battle:  attack,  retreat
               ''')
 
@@ -359,6 +357,7 @@ side note:
         player.display_info()
         
     def view_inventory():
+        print()
         print("Inventory: ")
         player.display_inventory()
         print()
@@ -450,7 +449,7 @@ side note:
             print(f"Monster dropped {current_room.monster.gold} gold")
             player.gold += current_room.monster.gold
             print(f"Current Gold: {player.gold}")
-            print("")
+            print()
         
 
     def battle():
@@ -469,7 +468,7 @@ side note:
 
                     # MONSTER DIES
                     if (current_room.monster.hp <= 0):
-                        print("")
+                        print()
                         cprint(f"{current_room.monster.name} has been vanquished!", "yellow")
                         #player hp should be reset
                         player.hp = player.max_hp
@@ -509,9 +508,9 @@ side note:
         temp = prev_room
         prev_room = current_room
         current_room = temp
-        print("")
+        print()
         print(f"You are back in {current_room.name}")
-        print("")
+        print()
 
     
     def view_equipment():
@@ -525,9 +524,9 @@ side note:
                 curr_item = item
             
         if curr_item is None:
-            print("")
+            print()
             cprint(f"{item_name} not found in inventory", "red")
-            print("")
+            print()
             return
     
         if curr_item.item_type == "WEAPON" and player.weapon != curr_item:
@@ -535,9 +534,9 @@ side note:
                 player.attack -= player.weapon.damage
             player.weapon = curr_item
             player.attack += curr_item.damage
-            print("")
+            print()
             cprint(f"Successfully equipped {curr_item.name}", "green")
-            print("")
+            print()
         elif curr_item.item_type == "ARMOR" and player.armor != curr_item:
             if (player.armor != None):
                 player.max_hp -= player.armor.defense
@@ -545,13 +544,13 @@ side note:
             player.armor = curr_item
             player.max_hp += curr_item.defense
             player.hp = player.max_hp
-            print("")
+            print()
             cprint(f"Successfully equipped {curr_item.name}", "green")
-            print("")
+            print()
         else:
-            print("")
+            print()
             cprint("Cannot equip", "red")
-            print("")
+            print()
 
     def unequip(user_input):
         item_name = user_input[8:]
@@ -561,26 +560,26 @@ side note:
                 player.max_hp -= player.armor.defense
                 player.hp = player.max_hp
                 player.armor = None
-                print("")
+                print()
                 cprint(f"Successfully unequipped {item_name}", "green")
-                print("")
+                print()
             else:
-                print("")
+                print()
                 cprint(f"{item_name} was not unequipped", "red")
-                print("")
+                print()
 
 
         if (player.weapon != None):
             if (player.weapon.name.lower() == item_name.lower()):
                 player.attack -= player.weapon.damage
                 player.weapon = None
-                print("")
+                print()
                 cprint(f"Successfully unequipped {item_name}", "green")
-                print("")
+                print()
             else:
-                print("")
+                print()
                 cprint(f"{item_name} was not unequipped", "red")
-                print("")
+                print()
 
     def view_map():
         print(eldoria_map)
