@@ -14,16 +14,16 @@ from __init__ import CONN, CURSOR
 
 
  # WEAPONS
-excalibur = Item("Excalibur", "WEAPON", "Legendary Sword", 10, 0, 0, 15)
-mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, 0, 0, 25)
-dragonbone_bow = Item("Dragonbone Bow", "WEAPON", "Wyrmstring Bow", 27, 0, 0, 32)
-shadowblade = Item("Shadow Blade", "WEAPON", "Stealthy Dagger", 15, 0, 0, 20)
-soul_reaver = Item("Soul Reaver", "WEAPON", "Cursed Sword", 30, 0, 0, 35)
-moonlit_dagger = Item("Moonlit Dagger", "WEAPON", "Silvered Blade", 13, 0, 0, 17)
-serpents_fang = Item("Serpent's Fang", "WEAPON", "Venomous Whip", 16, 0, 0, 21)
-stormcaller = Item("Stormcaller", "WEAPON", "Lightning Sword", 27, 0, 0, 32)
-dwarven_crossbow = Item("Dwarvan Crossbow", "WEAPON", "Stour Crossbow", 12, 0, 0, 17)
-warhammer_of_the_titans = Item("Warhammer of the Titans", "WEAPON", "Colossal Warhammer", 35, 0, 0, 40)
+excalibur = Item("Excalibur", "WEAPON", "Legendary Sword", 10, 0, 0, 15, 1, 1, 1)
+mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, 0, 0, 25, 1, 1, 1)
+dragonbone_bow = Item("Dragonbone Bow", "WEAPON", "Wyrmstring Bow", 27, 0, 0, 32, 1, 1, 1)
+shadowblade = Item("Shadow Blade", "WEAPON", "Stealthy Dagger", 15, 0, 0, 20, 1, 1, 1)
+soul_reaver = Item("Soul Reaver", "WEAPON", "Cursed Sword", 30, 0, 0, 35, 1, 1, 1)
+moonlit_dagger = Item("Moonlit Dagger", "WEAPON", "Silvered Blade", 13, 0, 0, 17, 1, 1, 1)
+serpents_fang = Item("Serpent's Fang", "WEAPON", "Venomous Whip", 16, 0, 0, 21, 1, 1, 1)
+stormcaller = Item("Stormcaller", "WEAPON", "Lightning Sword", 27, 0, 0, 32, 1, 1, 1)
+dwarven_crossbow = Item("Dwarvan Crossbow", "WEAPON", "Stour Crossbow", 12, 0, 0, 17, 1, 1, 1)
+warhammer_of_the_titans = Item("Warhammer of the Titans", "WEAPON", "Colossal Warhammer", 35, 0, 0, 40, 1, 1, 1)
 
 # ARMOR
 knight_armor_set = Item("Knights Armor Set", "ARMOR", 0, 0, 25, 0, 35)
@@ -369,24 +369,24 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             print("Shop Onwer: You don't have enough gold!")
         
     def shop_sell():
-        while True:
-            view_inventory()
+            while True:
+                view_inventory()
 
-            item_input = input("Shop Owner: What are you selling? >> ")
-            selected_item = None
+                item_input = input("Shop Owner: What are you selling? >> ")
+                selected_item = None
 
-            for item in player.inventory:
-                if item.name.lower() == item_input.lower():
-                    selected_item = item
+                for item in player.inventory:
+                    if item.name.lower() == item_input.lower():
+                        selected_item = item
 
-            if selected_item == None:
-                print("Item does not exist in your inventory")
-                continue
-            else:
-                player.inventory.remove(selected_item)
-                player.gold += selected_item.cost
-                current_room.shop.items.append(selected_item)
-                break
+                if selected_item == None:
+                    print("Item does not exist in your inventory")
+                    continue
+                else:
+                    player.inventory.remove(selected_item)
+                    player.gold += selected_item.cost
+                    current_room.shop.items.append(selected_item)
+                    break
 
     def shop():
         if current_room.shop == None:
@@ -408,15 +408,16 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
                     break
 
     def drops():
-        monster_drops = current_room.monster.drops
+            monster_drops = current_room.monster.drops
 
-        for drop in monster_drops:
-            if drop != None:
-                print(f"{current_room.monster.name} dropped {drop.name} and now in inventory")
-                player.inventory.append(drop)
-        print(f"Monster dropped {current_room.monster.gold} gold")
-        player.gold += current_room.monster.gold
-        print(f"GOLD: {player.gold}")
+            for drop in monster_drops:
+                drop.remove_item_monster(drop.id)
+                if drop != None:
+                    print(f"{current_room.monster.name} dropped {drop.name} and now in inventory")
+                    player.inventory.append(drop)
+            print(f"Monster dropped {current_room.monster.gold} gold")
+            player.gold += current_room.monster.gold
+            print(f"GOLD: {player.gold}")
         
 
     def battle():
