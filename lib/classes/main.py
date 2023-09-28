@@ -1,4 +1,4 @@
-# import pyfiglet
+import pyfiglet
 from termcolor import cprint
 
 from player import Player
@@ -8,9 +8,7 @@ from monster import Monster
 from shop import Shop
 from __init__ import CONN, CURSOR
 from avatars import *
-# result = pyfiglet.figlet_format("Adventures of Mattanoman")
 
-# cprint(result, "red")
 
 
  # WEAPONS
@@ -126,6 +124,9 @@ def main():
     
     # Game Introduction
     name = input("What is your name, hero? ")
+    result = pyfiglet.figlet_format(f"Adventures of {name}")
+
+    cprint(result, "red")
     player = Player(name)
     cprint(f'''
 Once upon a time, in the mystical realm of Eldoria, there was a fallen king named {player.name}. 
