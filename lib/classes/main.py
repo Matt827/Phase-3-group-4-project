@@ -39,7 +39,8 @@ shop1 = Shop("Store", [excalibur, mjolnir, dragonbone_bow, shadowblade, soul_rea
 
 
 # SQL COMMANDS
-
+Room.drop_table()
+Room.create_table()
 Shop.drop_table()
 Shop.create_table()
 shop1.save()
@@ -125,24 +126,46 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     
 
     # MONSTERS
-    ghost1 = Monster("Ghost", 25, 30, 5, 40, [knight_armor_set, moonlit_dagger])
-    ghost2 = Monster("Ghost", 25, 30, 5, 40, [knight_armor_set, moonlit_dagger])
-    ghost3 = Monster("Ghost", 25, 30, 5, 40, [knight_armor_set, moonlit_dagger])
-    troll1 = Monster("Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"])
-    troll2 = Monster("Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"])
-    troll3 = Monster("Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"])
-    vampire1 = Monster("Vampire", 40, 60, 15, 28, ["Vampire Fang", "Gold Coin"])
-    vampire2 = Monster("Vampire", 40, 60, 15, 28, ["Vampire Fang", "Gold Coin"])
-    vampire3 = Monster("Vampire", 40, 60, 15, 28, ["Vampire Fang", "Gold Coin"])
-    werewolf1 = Monster("Werewolf", 30, 75, 20, 22, ["Werewolf Fur", "Gold Coin"])
-    werewolf2 = Monster("Werewolf", 30, 75, 20, 22, ["Werewolf Fur", "Gold Coin"])
-    werewolf3 = Monster("Werewolf", 30, 75, 20, 22, ["Werewolf Fur", "Gold Coin"])
-    demon1 = Monster("Demon", 45, 90, 25, 15, ["Demon Horn", "Gold Coin"])
-    demon2 = Monster("Demon", 45, 90, 25, 15, ["Demon Horn", "Gold Coin"])
-    demon3 = Monster("Demon", 45, 90, 25, 15, ["Demon Horn", "Gold Coin"])
-    dragon1 = Monster("Zephyrion", 100, 200, 20, 30, ["Dragon Scale", "Dragon Tooth"])
-    dragon2 = Monster("Celestiax", 100, 200, 20, 30, ["Dragon Scale", "Dragon Tooth"])
-    dragon3 = Monster("Zuko", 100, 200, 30, 30, ["Dragon Scale", "Dragon Tooth"])
+    ghost1 = Monster("Malevolent Ghost", 25, 30, 5, 40, [knight_armor_set, moonlit_dagger], 1)
+    ghost2 = Monster("Sinister Ghost", 25, 30, 5, 40, [knight_armor_set, moonlit_dagger], 3)
+    ghost3 = Monster("Wicked Ghost", 25, 30, 5, 40, [knight_armor_set, moonlit_dagger], 2)
+    troll1 = Monster("Ruthless Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"], 4)
+    troll2 = Monster("Malignant Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"], 6)
+    troll3 = Monster("Nefarious Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"], 8)
+    vampire1 = Monster("Malefic Vampire", 40, 60, 15, 28, ["Vampire Fang", "Gold Coin"], 12)
+    vampire2 = Monster("Twisted Vampire", 40, 60, 15, 28, ["Vampire Fang", "Gold Coin"], 10)
+    vampire3 = Monster("Sinister Vampire", 40, 60, 15, 28, ["Vampire Fang", "Gold Coin"], 13)
+    werewolf1 = Monster("Malefic Werewolf", 30, 75, 20, 22, ["Werewolf Fur", "Gold Coin"], 5)
+    werewolf2 = Monster("Diabolical Werewolf", 30, 75, 20, 22, ["Werewolf Fur", "Gold Coin"], 14)
+    werewolf3 = Monster("Dark Werewolf", 30, 75, 20, 22, ["Werewolf Fur", "Gold Coin"], 9)
+    demon1 = Monster("Demonic Demon", 45, 90, 25, 15, ["Demon Horn", "Gold Coin"], 11)
+    demon2 = Monster("Cursed Demon", 45, 90, 25, 15, ["Demon Horn", "Gold Coin"], 15)
+    demon3 = Monster("Corrupt Demon", 45, 90, 25, 15, ["Demon Horn", "Gold Coin"], 16)
+    dragon1 = Monster("Zephyrion", 100, 200, 20, 30, ["Dragon Scale", "Dragon Tooth"], 17)
+    dragon2 = Monster("Celestiax", 100, 200, 20, 30, ["Dragon Scale", "Dragon Tooth"], 18)
+    dragon3 = Monster("Zuko", 100, 200, 30, 30, ["Dragon Scale", "Dragon Tooth"], 20)
+
+    #Assign monsters to rooms
+    phoenixreach_city.monster = demon3
+    moonshadow_grove.monster = ghost1
+    misthaven_vale.monster = None
+    whispering_woods.monster = ghost3
+    eldemoor_forest.monster = ghost2
+    frostfall_glacier.monster = troll1
+    silverstrand_beach.monster = werewolf1
+    moonlit_cove.monster = troll2
+    glade_grasslands.monster = troll3
+    avalon.monster = werewolf3
+    luminara_falls.monster = vampire2
+    mistral_bay.monster = demon1
+    thunderpeak_summit.monster = vampire1
+    shadowfen_swamp.monster = vampire3
+    shadow_peak.monster = werewolf2
+    crimsonreach_fortress.monster = demon2
+    serpents_labrynth.monster = dragon1
+    obsidian_abyss.monster = dragon2
+    wyvern_lair.monster = None
+    zukos_stronghold.monster = dragon3
     
     # SQL COMMANDS For MONSTERS
     Monster.drop_table()
@@ -166,27 +189,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     dragon2.save()
     dragon3.save()
     
-    #Assign monsters to rooms
-    phoenixreach_city.monster = demon3
-    moonshadow_grove.monster = ghost1
-    misthaven_vale.monster = None
-    whispering_woods.monster = ghost3
-    eldemoor_forest.monster = ghost2
-    frostfall_glacier.monster = troll1
-    silverstrand_beach.monster = werewolf1
-    moonlit_cove.monster = troll2
-    glade_grasslands.monster = troll3
-    avalon.monster = werewolf3
-    luminara_falls.monster = vampire2
-    mistral_bay.monster = demon1
-    thunderpeak_summit.monster = vampire1
-    shadowfen_swamp.monster = vampire3
-    shadow_peak.monster = werewolf2
-    crimsonreach_fortress.monster = demon2
-    serpents_labrynth.monster = dragon1
-    obsidian_abyss.monster = dragon2
-    wyvern_lair.monster = None
-    zukos_stronghold.monster = dragon3
+    
    
     player.inventory.append(excalibur)
     player.inventory.append(shadowblade)
@@ -437,6 +440,8 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
                         #monster should drop items
                         drops()
                         #monster should be deleted
+                        CURSOR.execute(f"DELETE FROM monsters WHERE name='{current_room.monster.name}'")
+                        CONN.commit()
                         current_room.monster = None
                         break
 
