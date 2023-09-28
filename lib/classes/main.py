@@ -15,27 +15,30 @@ from __init__ import CONN, CURSOR
 
  # WEAPONS
 excalibur = Item("Excalibur", "WEAPON", "Legendary Sword", 10, 0, 0, 15, 1, 1, 1)
-mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, 0, 0, 25, 1, 1, 1)
-dragonbone_bow = Item("Dragonbone Bow", "WEAPON", "Wyrmstring Bow", 27, 0, 0, 32, 1, 1, 1)
-shadowblade = Item("Shadow Blade", "WEAPON", "Stealthy Dagger", 15, 0, 0, 20, 1, 1, 1)
-soul_reaver = Item("Soul Reaver", "WEAPON", "Cursed Sword", 30, 0, 0, 35, 1, 1, 1)
-moonlit_dagger = Item("Moonlit Dagger", "WEAPON", "Silvered Blade", 13, 0, 0, 17, 1, 1, 1)
-serpents_fang = Item("Serpent's Fang", "WEAPON", "Venomous Whip", 16, 0, 0, 21, 1, 1, 1)
-stormcaller = Item("Stormcaller", "WEAPON", "Lightning Sword", 27, 0, 0, 32, 1, 1, 1)
-dwarven_crossbow = Item("Dwarvan Crossbow", "WEAPON", "Stour Crossbow", 12, 0, 0, 17, 1, 1, 1)
-warhammer_of_the_titans = Item("Warhammer of the Titans", "WEAPON", "Colossal Warhammer", 35, 0, 0, 40, 1, 1, 1)
+mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, 0, 0, 25, 8, 1, 1)
+dragonbone_bow = Item("Dragonbone Bow", "WEAPON", "Wyrmstring Bow", 27, 0, 0, 32, 10, 1, 1)
+shadowblade = Item("Shadow Blade", "WEAPON", "Stealthy Dagger", 15, 0, 0, 20, 6, 1, 1)
+soul_reaver = Item("Soul Reaver", "WEAPON", "Cursed Sword", 30, 0, 0, 35, 13, 1, 1)
+moonlit_dagger = Item("Moonlit Dagger", "WEAPON", "Silvered Blade", 13, 0, 0, 17, 4, 1, 1)
+serpents_fang = Item("Serpent's Fang", "WEAPON", "Venomous Whip", 16, 0, 0, 21, 7, 1, 1)
+stormcaller = Item("Stormcaller", "WEAPON", "Lightning Sword", 27, 0, 0, 32, 12, 1, 1)
+dwarven_crossbow = Item("Dwarvan Crossbow", "WEAPON", "Stour Crossbow", 12, 0, 0, 17, 3, 1, 1)
+warhammer_of_the_titans = Item("Warhammer of the Titans", "WEAPON", "Colossal Warhammer", 35, 0, 0, 40, 16, 1, 1)
 
 # ARMOR
-knight_armor_set = Item("Knights Armor Set", "ARMOR", 0, 0, 25, 0, 35)
-noble_lord_armor_set = Item("Noble Lord Armor Set", "ARMOR", 0, 0, 50, 0, 60)
-commander_armor_set = Item("Commander Armor Set", "ARMOR", 0, 0, 75, 0, 85)
-king_armor_set = Item("King Armor Set", "ARMOR", 0, 0, 100, 0, 110)
+knight_armor_set = Item("Knights Armor Set", "ARMOR", 0, 0, 25, 0, 35, 2, 1, 1)
+noble_lord_armor_set = Item("Noble Lord Armor Set", "ARMOR", 0, 0, 50, 0, 60, 5, 1, 1)
+commander_armor_set = Item("Commander Armor Set", "ARMOR", 0, 0, 75, 0, 85, 11, 1, 1)
+king_armor_set = Item("King Armor Set", "ARMOR", 0, 0, 100, 0, 110, 17, 1, 1)
 
 # POTION
-health_potion = Item("Vitality Elixir", "POTION", 0, 0, 0, 25, 50)
+health_potion1 = Item("Vitality Elixir", "POTION", 0, 0, 0, 25, 50, 9, 1, 1)
+health_potion2 = Item("Health Elixir", "POTION", 0, 0, 0, 50, 100, 14, 1, 1)
+health_potion3 = Item("Life Elixir", "POTION", 0, 0, 0, 75, 150, 15, 1, 1)
+health_potion4 = Item("Eternal Elixir", "POTION", 0, 0, 0, 100, 200, 18, 1, 1)
 
 
-shop1 = Shop("Store", [excalibur, mjolnir, dragonbone_bow, shadowblade, soul_reaver, moonlit_dagger, serpents_fang, stormcaller, dwarven_crossbow, warhammer_of_the_titans, knight_armor_set, noble_lord_armor_set, commander_armor_set, king_armor_set, health_potion])
+shop1 = Shop("Store", [excalibur, mjolnir, dragonbone_bow, shadowblade, soul_reaver, moonlit_dagger, serpents_fang, stormcaller, dwarven_crossbow, warhammer_of_the_titans, knight_armor_set, noble_lord_armor_set, commander_armor_set, king_armor_set, health_potion1, health_potion2, health_potion3, health_potion4])
 
 
 # SQL COMMANDS
@@ -61,7 +64,10 @@ knight_armor_set.save()
 noble_lord_armor_set.save()
 commander_armor_set.save()
 king_armor_set.save()
-health_potion.save()
+health_potion1.save()
+health_potion2.save()
+health_potion3.save()
+health_potion4.save()
 
 
 # LOCATIONS
@@ -126,24 +132,24 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     
 
     # MONSTERS
-    ghost1 = Monster("Malevolent Ghost", 25, 30, 5, 40, [knight_armor_set, moonlit_dagger], 1)
-    ghost2 = Monster("Sinister Ghost", 25, 30, 5, 40, [knight_armor_set, moonlit_dagger], 3)
-    ghost3 = Monster("Wicked Ghost", 25, 30, 5, 40, [knight_armor_set, moonlit_dagger], 2)
-    troll1 = Monster("Ruthless Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"], 4)
-    troll2 = Monster("Malignant Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"], 6)
-    troll3 = Monster("Nefarious Troll", 18, 45, 10, 15, ["Troll Tooth", "Gold Coin"], 8)
-    vampire1 = Monster("Malefic Vampire", 40, 60, 15, 28, ["Vampire Fang", "Gold Coin"], 12)
-    vampire2 = Monster("Twisted Vampire", 40, 60, 15, 28, ["Vampire Fang", "Gold Coin"], 10)
-    vampire3 = Monster("Sinister Vampire", 40, 60, 15, 28, ["Vampire Fang", "Gold Coin"], 13)
-    werewolf1 = Monster("Malefic Werewolf", 30, 75, 20, 22, ["Werewolf Fur", "Gold Coin"], 5)
-    werewolf2 = Monster("Diabolical Werewolf", 30, 75, 20, 22, ["Werewolf Fur", "Gold Coin"], 14)
-    werewolf3 = Monster("Dark Werewolf", 30, 75, 20, 22, ["Werewolf Fur", "Gold Coin"], 9)
-    demon1 = Monster("Demonic Demon", 45, 90, 25, 15, ["Demon Horn", "Gold Coin"], 11)
-    demon2 = Monster("Cursed Demon", 45, 90, 25, 15, ["Demon Horn", "Gold Coin"], 15)
-    demon3 = Monster("Corrupt Demon", 45, 90, 25, 15, ["Demon Horn", "Gold Coin"], 16)
-    dragon1 = Monster("Zephyrion", 100, 200, 20, 30, ["Dragon Scale", "Dragon Tooth"], 17)
-    dragon2 = Monster("Celestiax", 100, 200, 20, 30, ["Dragon Scale", "Dragon Tooth"], 18)
-    dragon3 = Monster("Zuko", 100, 200, 30, 30, ["Dragon Scale", "Dragon Tooth"], 20)
+    ghost1 = Monster("Malevolent Ghost", 25, 30, 5, 40, [excalibur], 1)
+    ghost2 = Monster("Sinister Ghost", 25, 30, 5, 40, [knight_armor_set], 3)
+    ghost3 = Monster("Wicked Ghost", 25, 30, 5, 40, [dwarven_crossbow], 2)
+    troll1 = Monster("Ruthless Troll", 18, 45, 10, 15, [moonlit_dagger], 4)
+    troll2 = Monster("Malignant Troll", 18, 45, 10, 15, [noble_lord_armor_set], 6)
+    troll3 = Monster("Nefarious Troll", 18, 45, 10, 15, [shadowblade], 8)
+    vampire1 = Monster("Malefic Vampire", 40, 60, 15, 28, [serpents_fang], 12)
+    vampire2 = Monster("Twisted Vampire", 40, 60, 15, 28, [mjolnir], 10)
+    vampire3 = Monster("Sinister Vampire", 40, 60, 15, 28, [health_potion1], 13)
+    werewolf1 = Monster("Malefic Werewolf", 30, 75, 20, 22, [dragonbone_bow], 5)
+    werewolf2 = Monster("Diabolical Werewolf", 30, 75, 20, 22, [commander_armor_set], 14)
+    werewolf3 = Monster("Dark Werewolf", 30, 75, 20, 22, [stormcaller], 9)
+    demon1 = Monster("Demonic Demon", 45, 90, 25, 15, [soul_reaver], 11)
+    demon2 = Monster("Cursed Demon", 45, 90, 25, 15, [health_potion2], 15)
+    demon3 = Monster("Corrupt Demon", 45, 90, 25, 15, [health_potion3], 16)
+    dragon1 = Monster("Zephyrion", 100, 200, 20, 30, [warhammer_of_the_titans], 17)
+    dragon2 = Monster("Celestiax", 100, 200, 20, 30, [king_armor_set], 18)
+    dragon3 = Monster("Zuko", 100, 200, 30, 30, [health_potion4], 20)
 
     #Assign monsters to rooms
     phoenixreach_city.monster = demon3
