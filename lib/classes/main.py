@@ -24,16 +24,16 @@ dwarven_crossbow = Item("Dwarvan Crossbow", "WEAPON", "Stour Crossbow", 12, 0, 0
 warhammer_of_the_titans = Item("Warhammer of the Titans", "WEAPON", "Colossal Warhammer", 35, 0, 0, 40, 16, 1, 1)
 
 # ARMOR
-knight_armor_set = Item("Knights Armor Set", "ARMOR", 0, 0, 25, 0, 35, 2, 1, 1)
-noble_lord_armor_set = Item("Noble Lord Armor Set", "ARMOR", 0, 0, 50, 0, 60, 5, 1, 1)
-commander_armor_set = Item("Commander Armor Set", "ARMOR", 0, 0, 75, 0, 85, 11, 1, 1)
-king_armor_set = Item("King Armor Set", "ARMOR", 0, 0, 100, 0, 110, 17, 1, 1)
+knight_armor_set = Item("Knights Armor Set", "ARMOR", "Flexible Defense", 0, 25, 0, 35, 2, 1, 1)
+noble_lord_armor_set = Item("Noble Lord Armor Set", "ARMOR", "Agile Ward", 0, 50, 0, 60, 5, 1, 1)
+commander_armor_set = Item("Commander Armor Set", "ARMOR", "Heavy Protection", 0, 75, 0, 85, 11, 1, 1)
+king_armor_set = Item("King Armor Set", "ARMOR", "Dragon Scales", 0, 100, 0, 110, 17, 1, 1)
 
 # POTION
-health_potion1 = Item("Vitality Elixir", "POTION", 0, 0, 0, 25, 50, 9, 1, 1)
-health_potion2 = Item("Health Elixir", "POTION", 0, 0, 0, 50, 100, 14, 1, 1)
-health_potion3 = Item("Life Elixir", "POTION", 0, 0, 0, 75, 150, 15, 1, 1)
-health_potion4 = Item("Eternal Elixir", "POTION", 0, 0, 0, 100, 200, 18, 1, 1)
+health_potion1 = Item("Vitality Elixir", "POTION", "Increase max health by 25", 0, 0, 25, 50, 9, 1, 1)
+health_potion2 = Item("Health Elixir", "POTION", "Increase max health by 50", 0, 0, 50, 100, 14, 1, 1)
+health_potion3 = Item("Life Elixir", "POTION", "Increase max health by 75", 0, 0, 75, 150, 15, 1, 1)
+health_potion4 = Item("Eternal Elixir", "POTION", "Increase max health by 100", 0, 0, 100, 200, 18, 1, 1)
 
 
 shop1 = Shop("Store", [excalibur, mjolnir, dragonbone_bow, shadowblade, soul_reaver, moonlit_dagger, serpents_fang, stormcaller, dwarven_crossbow, warhammer_of_the_titans, knight_armor_set, noble_lord_armor_set, commander_armor_set, king_armor_set, health_potion1, health_potion2, health_potion3, health_potion4])
