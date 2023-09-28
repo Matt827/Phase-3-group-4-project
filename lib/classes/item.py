@@ -48,7 +48,7 @@ class Item:
 
     def save(self):
         sql = """
-            INSERT INTO items (name, ShopsId, MonstersId type, description, damage, defense, potion, cost)
+            INSERT INTO items (name, ShopsId, MonstersId, type, description, damage, defense, potion, cost)
             VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
 
@@ -62,7 +62,7 @@ class Item:
         sql = """
             UPDATE items
             SET MonstersId = NULL
-            WHERE id = ?;
+            WHERE ItemId = ?;
         """
         CURSOR.execute(sql, (id, ))
         CONN.commit()
@@ -72,7 +72,7 @@ class Item:
     def remove_item_shop(cls, id):
         sql = """
             DELETE FROM items
-            WHERE id = ?
+            WHERE ItemId = ?
         """
         CURSOR.execute(sql, (id, ))
         CONN.commit()

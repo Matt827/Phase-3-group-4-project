@@ -15,12 +15,13 @@ class Monster:
         sql = """
             CREATE TABLE IF NOT EXISTS monsters (
             MonsterId INTEGER PRIMARY KEY,
+            RoomsId INTEGER,
             name TEXT,
             gold INTEGER,
             health INTEGER,
             attack INTEGER,
-            speed INTEGER
-            FOREIGN KEY (RoomsId) REFERENCES locations(location_id)
+            speed INTEGER,
+            FOREIGN KEY (RoomsId) REFERENCES rooms(room_id)
             )
         """
         

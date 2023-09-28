@@ -14,25 +14,25 @@ from __init__ import CONN, CURSOR
 
 
  # WEAPONS
-excalibur = Item("Excalibur", "WEAPON", "Legendary Sword", 10, 0, 0, 15)
-mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, 0, 0, 25)
-dragonbone_bow = Item("Dragonbone Bow", "WEAPON", "Wyrmstring Bow", 27, 0, 0, 32)
-shadowblade = Item("Shadow Blade", "WEAPON", "Stealthy Dagger", 15, 0, 0, 20)
-soul_reaver = Item("Soul Reaver", "WEAPON", "Cursed Sword", 30, 0, 0, 35)
-moonlit_dagger = Item("Moonlit Dagger", "WEAPON", "Silvered Blade", 13, 0, 0, 17)
-serpents_fang = Item("Serpent's Fang", "WEAPON", "Venomous Whip", 16, 0, 0, 21)
-stormcaller = Item("Stormcaller", "WEAPON", "Lightning Sword", 27, 0, 0, 32)
-dwarven_crossbow = Item("Dwarvan Crossbow", "WEAPON", "Stour Crossbow", 12, 0, 0, 17)
-warhammer_of_the_titans = Item("Warhammer of the Titans", "WEAPON", "Colossal Warhammer", 35, 0, 0, 40)
+excalibur = Item("Excalibur", "WEAPON", "Legendary Sword", 10, 0, 0, 15, 1, 1)
+mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, 0, 0, 25, 1, 1)
+dragonbone_bow = Item("Dragonbone Bow", "WEAPON", "Wyrmstring Bow", 27, 0, 0, 32, 1, 1)
+shadowblade = Item("Shadow Blade", "WEAPON", "Stealthy Dagger", 15, 0, 0, 20, 1, 1)
+soul_reaver = Item("Soul Reaver", "WEAPON", "Cursed Sword", 30, 0, 0, 35, 1, 1)
+moonlit_dagger = Item("Moonlit Dagger", "WEAPON", "Silvered Blade", 13, 0, 0, 17, 1, 1)
+serpents_fang = Item("Serpent's Fang", "WEAPON", "Venomous Whip", 16, 0, 0, 21, 1, 1)
+stormcaller = Item("Stormcaller", "WEAPON", "Lightning Sword", 27, 0, 0, 32, 1, 1)
+dwarven_crossbow = Item("Dwarvan Crossbow", "WEAPON", "Stour Crossbow", 12, 0, 0, 17, 1, 1)
+warhammer_of_the_titans = Item("Warhammer of the Titans", "WEAPON", "Colossal Warhammer", 35, 0, 0, 40, 1, 1)
 
 # ARMOR
-knight_armor_set = Item("Knights Armor Set", "ARMOR", 0, 0, 25, 0, 35)
-noble_lord_armor_set = Item("Noble Lord Armor Set", "ARMOR", 0, 0, 50, 0, 60)
-commander_armor_set = Item("Commander Armor Set", "ARMOR", 0, 0, 75, 0, 85)
-king_armor_set = Item("King Armor Set", "ARMOR", 0, 0, 100, 0, 110)
+knight_armor_set = Item("Knights Armor Set", "ARMOR", 0, 0, 25, 0, 35, 1, 1)
+noble_lord_armor_set = Item("Noble Lord Armor Set", "ARMOR", 0, 0, 50, 0, 60, 1, 1)
+commander_armor_set = Item("Commander Armor Set", "ARMOR", 0, 0, 75, 0, 85, 1, 1)
+king_armor_set = Item("King Armor Set", "ARMOR", 0, 0, 100, 0, 110, 1, 1)
 
 # POTION
-health_potion = Item("Vitality Elixir", "POTION", 0, 0, 0, 25, 50)
+health_potion = Item("Vitality Elixir", "POTION", 0, 0, 0, 25, 50, 1, 1)
 
 shop1 = Shop("Store", [excalibur, mjolnir, dragonbone_bow, shadowblade, soul_reaver, moonlit_dagger, serpents_fang, stormcaller, dwarven_crossbow, warhammer_of_the_titans, knight_armor_set, noble_lord_armor_set, commander_armor_set, king_armor_set, health_potion])
 
@@ -364,6 +364,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             return
 
         if (player.gold >= selected_item.cost):
+            Item.remove_item_shop(selected_item.id)
             current_room.shop.items.remove(selected_item)
             player.gold -= selected_item.cost
             player.inventory.append(selected_item)
@@ -414,6 +415,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         monster_drops = current_room.monster.drops
 
         for drop in monster_drops:
+            drop.remove_item_monster(drop.id)
             if drop != None:
                 print(f"{current_room.monster.name} dropped {drop.name} and now in inventory")
                 player.inventory.append(drop)
