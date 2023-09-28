@@ -1,7 +1,7 @@
 from __init__ import CONN, CURSOR
 
 class Monster:
-    def __init__(self, name, gold, health, attack, speed, drops, location):
+    def __init__(self, name, gold, health, attack, speed, drops, location, avatar):
         self.name = name
         self.gold = gold
         self.health = health
@@ -10,6 +10,7 @@ class Monster:
         self.speed = speed
         self.drops = drops
         self.location = location
+        self.avatar = avatar
         
     @classmethod
     def create_table(cls):

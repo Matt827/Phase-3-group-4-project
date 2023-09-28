@@ -1,5 +1,5 @@
 # import pyfiglet
-# from termcolor import cprint
+from termcolor import cprint
 
 from player import Player
 from rooms import Room
@@ -7,7 +7,7 @@ from item import Item
 from monster import Monster
 from shop import Shop
 from __init__ import CONN, CURSOR
-
+from avatars import *
 # result = pyfiglet.figlet_format("Adventures of Mattanoman")
 
 # cprint(result, "red")
@@ -39,6 +39,10 @@ health_potion4 = Item("Eternal Elixir", "POTION", 0, 0, 0, 100, 200, 18, 1, 1)
 
 
 shop1 = Shop("Store", [excalibur, mjolnir, dragonbone_bow, shadowblade, soul_reaver, moonlit_dagger, serpents_fang, stormcaller, dwarven_crossbow, warhammer_of_the_titans, knight_armor_set, noble_lord_armor_set, commander_armor_set, king_armor_set, health_potion1, health_potion2, health_potion3, health_potion4])
+
+
+
+
 
 
 # SQL COMMANDS
@@ -123,33 +127,33 @@ def main():
     # Game Introduction
     name = input("What is your name, hero? ")
     player = Player(name)
-    print(f'''
+    cprint(f'''
 Once upon a time, in the mystical realm of Eldoria, there was a fallen king named {player.name}. 
 He had once ruled over a prosperous kingdom, but his reign had been marred by a black dragon. 
 The Black Dragon took control of the entire kingdom and took his people into captivity. 
 He must now adventure through the land of Elda, battling monsters and foes, and eventually defeating the Black Dragon, Zuko to free his people and reclaim his kingdom.
-''')
+''', 'yellow')
     
 
     # MONSTERS
-    ghost1 = Monster("Malevolent Ghost", 25, 30, 5, 40, [excalibur], 1)
-    ghost2 = Monster("Sinister Ghost", 25, 30, 5, 40, [knight_armor_set], 3)
-    ghost3 = Monster("Wicked Ghost", 25, 30, 5, 40, [dwarven_crossbow], 2)
-    troll1 = Monster("Ruthless Troll", 18, 45, 10, 15, [moonlit_dagger], 4)
-    troll2 = Monster("Malignant Troll", 18, 45, 10, 15, [noble_lord_armor_set], 6)
-    troll3 = Monster("Nefarious Troll", 18, 45, 10, 15, [shadowblade], 8)
-    vampire1 = Monster("Malefic Vampire", 40, 60, 15, 28, [serpents_fang], 12)
-    vampire2 = Monster("Twisted Vampire", 40, 60, 15, 28, [mjolnir], 10)
-    vampire3 = Monster("Sinister Vampire", 40, 60, 15, 28, [health_potion1], 13)
-    werewolf1 = Monster("Malefic Werewolf", 30, 75, 20, 22, [dragonbone_bow], 5)
-    werewolf2 = Monster("Diabolical Werewolf", 30, 75, 20, 22, [commander_armor_set], 14)
-    werewolf3 = Monster("Dark Werewolf", 30, 75, 20, 22, [stormcaller], 9)
-    demon1 = Monster("Demonic Demon", 45, 90, 25, 15, [soul_reaver], 11)
-    demon2 = Monster("Cursed Demon", 45, 90, 25, 15, [health_potion2], 15)
-    demon3 = Monster("Corrupt Demon", 45, 90, 25, 15, [health_potion3], 16)
-    dragon1 = Monster("Zephyrion", 100, 200, 20, 30, [warhammer_of_the_titans], 17)
-    dragon2 = Monster("Celestiax", 100, 200, 20, 30, [king_armor_set], 18)
-    dragon3 = Monster("Zuko", 100, 200, 30, 30, [health_potion4], 20)
+    ghost1 = Monster("Malevolent Ghost", 25, 30, 5, 40, [excalibur], 1, ghost_1_avatar)
+    ghost2 = Monster("Sinister Ghost", 25, 30, 5, 40, [knight_armor_set], 3, ghost_2_avatar)
+    ghost3 = Monster("Wicked Ghost", 25, 30, 5, 40, [dwarven_crossbow], 2, ghost_3_avatar)
+    troll1 = Monster("Ruthless Troll", 18, 45, 10, 15, [moonlit_dagger], 4, troll_1_avatar)
+    troll2 = Monster("Malignant Troll", 18, 45, 10, 15, [noble_lord_armor_set], 6, troll_2_avatar)
+    troll3 = Monster("Nefarious Troll", 18, 45, 10, 15, [shadowblade], 8, troll_3_avatar)
+    vampire1 = Monster("Malefic Vampire", 40, 60, 15, 28, [serpents_fang], 12, vampire_1_avatar)
+    vampire2 = Monster("Twisted Vampire", 40, 60, 15, 28, [mjolnir], 10, vampire_2_avatar)
+    vampire3 = Monster("Sinister Vampire", 40, 60, 15, 28, [health_potion1], 13, vampire_3_avatar)
+    werewolf1 = Monster("Malefic Werewolf", 30, 75, 20, 22, [dragonbone_bow], 5, werewolf_1_avatar)
+    werewolf2 = Monster("Diabolical Werewolf", 30, 75, 20, 22, [commander_armor_set], 14, werewolf_2_avatar)
+    werewolf3 = Monster("Dark Werewolf", 30, 75, 20, 22, [stormcaller], 9, werewolf_3_avatar)
+    demon1 = Monster("Demonic Demon", 45, 90, 25, 15, [soul_reaver], 11, demon_1_avatar)
+    demon2 = Monster("Cursed Demon", 45, 90, 25, 15, [health_potion2], 15, demon_2_avatar)
+    demon3 = Monster("Corrupt Demon", 45, 90, 25, 15, [health_potion3], 16, demon_3_avatar)
+    dragon1 = Monster("Zephyrion", 100, 200, 20, 30, [warhammer_of_the_titans], 17, dragon_1_avatar)
+    dragon2 = Monster("Celestiax", 100, 200, 20, 30, [king_armor_set], 18, dragon_2_avatar)
+    dragon3 = Monster("Zuko", 100, 200, 30, 30, [health_potion4], 20, dragon_3_avatar)
 
     #Assign monsters to rooms
     phoenixreach_city.monster = demon3
@@ -430,6 +434,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         if current_room.monster == None:
             print("There are no monsters in this room.")
         else:
+            cprint(current_room.monster.avatar, "red")
             print(f"You are in battle with {current_room.monster.name}!")
             while True:
                 # PLAYER ATTACKS
@@ -437,7 +442,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
                 if battle_input == "attack":
                     # PLAYER DOES DMG TO MONSTER
                     current_room.monster.take_damage(player.attack)
-                    print(f"You did {player.attack} damage {current_room.monster.name} has {current_room.monster.hp} health.")
+                    cprint(f"You did {player.attack} damage {current_room.monster.name} has {current_room.monster.hp} health.", "green")
 
                     # MONSTER DIES
                     if (current_room.monster.hp <= 0):
@@ -454,11 +459,11 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
 
                     # MONSTER DOES DMG TO PLAYER
                     player.take_damage(current_room.monster.attack)
-                    print(f"You took {current_room.monster.attack} damage, you now have {player.hp} health.")
+                    cprint(f"You took {current_room.monster.attack} damage, you now have {player.hp} health.", "red")
 
                     # PLAYER DIES
                     if (player.hp <= 0):
-                        print(f"You have been defeated by {current_room.monster.name}...")
+                        cprint(f"You have been defeated by {current_room.monster.name}...", "red")
                         return False
                     
                 elif battle_input == "retreat":
