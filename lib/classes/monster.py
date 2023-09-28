@@ -20,6 +20,7 @@ class Monster:
             health INTEGER,
             attack INTEGER,
             speed INTEGER
+            FOREIGN KEY (RoomsId) REFERENCES locations(location_id)
             )
         """
         

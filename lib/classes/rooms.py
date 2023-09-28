@@ -35,8 +35,8 @@ class Room:
     @classmethod
     def create_table(cls):
         sql = """
-            CREATE TABLE IF NOT EXISTS locations (
-                location_id INTEGER PRIMARY KEY,
+            CREATE TABLE IF NOT EXISTS rooms (
+                room_id INTEGER PRIMARY KEY,
                 name TEXT
             )
         """
@@ -46,14 +46,14 @@ class Room:
     @classmethod
     def drop_table(cls):
         sql = """
-            DROP TABLE IF EXISTS locations;
+            DROP TABLE IF EXISTS rooms;
         """
         CURSOR.execute(sql)
         CONN.commit()
 
     def save(self):
         sql = """
-            INSERT INTO locations (name) VALUES (?)
+            INSERT INTO rooms (name) VALUES (?)
         """
 
         CURSOR.execute(sql, (self.name, ))
