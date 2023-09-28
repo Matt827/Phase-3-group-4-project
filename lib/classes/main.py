@@ -1,6 +1,6 @@
 import pyfiglet
 from termcolor import cprint
-
+import pygame
 from player import Player
 from rooms import Room
 from item import Item
@@ -8,9 +8,21 @@ from monster import Monster
 from shop import Shop
 from __init__ import CONN, CURSOR
 from avatars import *
-
-
-
+import os
+# pip install pygame
+pygame.init()
+weapon_sound = pygame.mixer.Sound("/Users/tanopaul/Development/code/phase-3/Phase-3-group-4-project/lib/classes/assets/weapon.wav")
+grunt = pygame.mixer.Sound("/Users/tanopaul/Development/code/phase-3/Phase-3-group-4-project/lib/classes/assets/grunt.wav")
+death = pygame.mixer.Sound("/Users/tanopaul/Development/code/phase-3/Phase-3-group-4-project/lib/classes/assets/death.wav")
+music = pygame.mixer.Sound("/Users/tanopaul/Development/code/phase-3/Phase-3-group-4-project/lib/classes/assets/music.mp3")
+level_complete = pygame.mixer.Sound("/Users/tanopaul/Development/code/phase-3/Phase-3-group-4-project/lib/classes/assets/level_complete.wav")
+you_lose = pygame.mixer.Sound("/Users/tanopaul/Development/code/phase-3/Phase-3-group-4-project/lib/classes/assets/you_lose.wav")
+crowd_win = pygame.mixer.Sound("/Users/tanopaul/Development/code/phase-3/Phase-3-group-4-project/lib/classes/assets/crowd_win.wav")
+sound_win = pygame.mixer.Sound("/Users/tanopaul/Development/code/phase-3/Phase-3-group-4-project/lib/classes/assets/sound_win.wav")
+equip = pygame.mixer.Sound("/Users/tanopaul/Development/code/phase-3/Phase-3-group-4-project/lib/classes/assets/equip.wav")
+purchased = pygame.mixer.Sound("/Users/tanopaul/Development/code/phase-3/Phase-3-group-4-project/lib/classes/assets/purchased.wav")
+walk = pygame.mixer.Sound("/Users/tanopaul/Development/code/phase-3/Phase-3-group-4-project/lib/classes/assets/walking.wav")
+music.set_volume(0.3)
  # WEAPONS
 excalibur = Item("Excalibur", "WEAPON", "Legendary Sword", 10, 0, 0, 15, 1, 1, 1)
 mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, 0, 0, 25, 8, 1, 1)
@@ -127,8 +139,9 @@ def main():
     
     # Game Introduction
     name = input("What is your name, hero? ")
+    os.system('cls' if os.name == 'nt' else 'clear')
     result = pyfiglet.figlet_format(f"Adventures of {name}")
-
+    pygame.mixer.Sound.play(music, -1)
     cprint(result, "red")
     player = Player(name)
     cprint(f'''
@@ -238,7 +251,7 @@ solve and shatter these binicles to obtain the key. Good luck! """)
         puzzle("01010101", "85")
 
         print("Great you now have the glacier key!")
-
+        pygame.mixer.Sound.play(level_complete)
         keys["glacier_key"] = True
 
     def water_puzzle():
@@ -272,7 +285,7 @@ side note:
         puzzle("79 110 101 SPACE 80 105 101 99 101", "One Piece")
 
         print("Nice! You now have the water key!")
-
+        pygame.mixer.Sound.play(level_complete)
         keys["water_key"] = True
 
     def flame_puzzle():
@@ -305,7 +318,7 @@ side note:
         puzzle("--. | .-. | . | . | -- SPACE .-.. | . | .", "greem lee")
 
         print("Congrats! You now have the flame key")
-
+        pygame.mixer.Sound.play(level_complete)
         keys["flame_key"] = True
 
     def go_direction(user_input):
@@ -366,15 +379,11 @@ side note:
         current_room.display_info()
 
     def shop_view():
-        # print(Item.view_table())
-        # for shop_item in current_room.shop.items:
-        #         print(f"TYPE: {shop_item.item_type}  NAME: {shop_item.name}  COST: {shop_item.cost}\n")
         CURSOR.execute("SELECT name, type, description, damage, defense, potion, cost FROM items")
         CONN.commit()
         result = CURSOR.fetchall()
         for item in result:
             print(str(f"NAME: {item[0]}   TYPE: {item[1]}    DESCRIPTION: {item[2]}    DAMAGE: {item[3]}    DEFENSE: {item[4]}    POTION: {item[5]}     COST: {item[6]} \n"))
-        # print(result)
 
 
     def shop_buy():
@@ -393,7 +402,10 @@ side note:
             current_room.shop.items.remove(selected_item)
             player.gold -= selected_item.cost
             player.inventory.append(selected_item)
-            print(f"Successfully purchased {selected_item.name}")
+            pygame.mixer.Sound.play(purchased)
+            print("")
+            cprint(f"Successfully purchased {selected_item.name}", "yellow")
+            print("")
         else:
             print("Shop Onwer: You don't have enough gold!")
         
@@ -414,7 +426,10 @@ side note:
                 else:
                     selected_item.add_item_shop()
                     player.inventory.remove(selected_item)
-                    print("SOLD")
+                    pygame.mixer.Sound.play(purchased)
+                    print("")
+                    cprint(f"You have successfully sold {selected_item.name}", "yellow")
+                    print("")
                     player.gold += selected_item.cost
                     current_room.shop.items.append(selected_item)
                     break
@@ -464,12 +479,15 @@ side note:
                 if battle_input == "attack":
                     # PLAYER DOES DMG TO MONSTER
                     current_room.monster.take_damage(player.attack)
+                    pygame.mixer.Sound.play(weapon_sound)
+                    pygame.mixer.Sound.play(grunt)
                     cprint(f"You did {player.attack} damage {current_room.monster.name} has {current_room.monster.hp} health.", "green")
 
                     # MONSTER DIES
                     if (current_room.monster.hp <= 0):
                         print()
                         cprint(f"{current_room.monster.name} has been vanquished!", "yellow")
+                        pygame.mixer.Sound.play(death)
                         #player hp should be reset
                         player.hp = player.max_hp
                         #monster should drop items
@@ -488,6 +506,7 @@ side note:
                     if (player.hp <= 0):
                         player_loses = pyfiglet.figlet_format("YOU LOSE")
                         cprint(player_loses, "red")
+                        pygame.mixer.Sound.play(you_lose)
                         cprint(f"You have been defeated by {current_room.monster.name}...", "red")
                         return False
                     
@@ -535,6 +554,7 @@ side note:
             player.weapon = curr_item
             player.attack += curr_item.damage
             print()
+            pygame.mixer.Sound.play(equip)
             cprint(f"Successfully equipped {curr_item.name}", "green")
             print()
         elif curr_item.item_type == "ARMOR" and player.armor != curr_item:
@@ -545,6 +565,7 @@ side note:
             player.max_hp += curr_item.defense
             player.hp = player.max_hp
             print()
+            pygame.mixer.Sound.play(equip)
             cprint(f"Successfully equipped {curr_item.name}", "green")
             print()
         else:
@@ -561,6 +582,7 @@ side note:
                 player.hp = player.max_hp
                 player.armor = None
                 print()
+                pygame.mixer.Sound.play(equip)
                 cprint(f"Successfully unequipped {item_name}", "green")
                 print()
             else:
@@ -574,6 +596,7 @@ side note:
                 player.attack -= player.weapon.damage
                 player.weapon = None
                 print()
+                pygame.mixer.Sound.play(equip)
                 cprint(f"Successfully unequipped {item_name}", "green")
                 print()
             else:
@@ -590,14 +613,19 @@ side note:
         user_input = input(">> ")
 
         if user_input == "go up":
+            pygame.mixer.Sound.play(walk)
             go_direction(user_input)
         elif user_input == "go down":
+            pygame.mixer.Sound.play(walk)
             go_direction(user_input)
         elif user_input == "go left":
+            pygame.mixer.Sound.play(walk)
             go_direction(user_input)
         elif user_input == "go right":
+            pygame.mixer.Sound.play(walk)
             go_direction(user_input)
         elif user_input == "go back":
+            pygame.mixer.Sound.play(walk)
             back()
         elif user_input == "help":
             help()
@@ -632,6 +660,8 @@ side note:
         CONN.commit()
         zuko_result = CURSOR.fetchall()
         if len(zuko_result) < 1:
+            pygame.mixer.Sound.play(crowd_win)
+            pygame.mixer.Sound.play(sound_win)
             winning_message = pyfiglet.figlet_format("YOU WIN!!!!!!")
             cprint(winning_message, "green")
 

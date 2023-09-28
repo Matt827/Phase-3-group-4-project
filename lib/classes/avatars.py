@@ -512,12 +512,12 @@ dragon_3_avatar = """
 
 
 eldoria_map = """
-
+                                              *KEY*
                 Whispering    ,-.^. .. .. X Frostfall        _
                     Woods .'             /  Glaciers     ,' ;  
               /`-.  , .   X ----- X ----/   `-.   _  ,-.,'  : 
           _.'   `--'     /     Eldemoor       `-' '-'       :
-        Silverstrand    /       Forest                      ;      
+  *KEY* Silverstrand    /       Forest                      ;      
           Beach        /          /                         :         
           :  X------- X ------- X ------------- X             :
           :/     Moonlit     Misthaven        Glade            :
@@ -533,7 +533,7 @@ eldoria_map = """
         .'                      |                     .-._,'
       .'        X  ------------ X -------------- X          `.
     _.'     Crimsonreach   Phoenixreach      Serpents    .__;
-    `._        Fortress       City          /  Labrynth    (
+    `._        Fortress      City *KEY*     /  Labrynth    (
       ;                      /             /                / 
       :                     /             /                /
       ;                    X --------- X ----- X-X-X      /                                                      
