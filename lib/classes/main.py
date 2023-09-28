@@ -581,6 +581,9 @@ side note:
                 cprint(f"{item_name} was not unequipped", "red")
                 print()
 
+    def view_map():
+        print(eldoria_map)
+
 
     while True:
         alive = True
@@ -602,6 +605,8 @@ side note:
             view_inventory()
         elif user_input == "view info":
             view_info()
+        elif user_input == "map":
+            view_map()
         elif user_input == "equipment":
             view_equipment()
         elif user_input[:5] == "equip" and len(user_input) > 5 and user_input[5] == " ":
