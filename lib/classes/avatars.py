@@ -509,3 +509,39 @@ dragon_3_avatar = """
     '   '  `
 
 """
+
+
+eldoria_map = """
+
+                Whispering    ,-.^. .. .. X Frostfall        _
+                    Woods .'             /  Glaciers     ,' ;  
+              /`-.  , .   X ----- X ----/   `-.   _  ,-.,'  : 
+          _.'   `--'     /     Eldemoor       `-' '-'       :
+        Silverstrand    /       Forest                      ;      
+          Beach        /          /                         :         
+          :  X------- X ------- X ------------- X             :
+          :/     Moonlit     Misthaven        Glade            :
+  Mistral X      Cove         Vale          Grasslands           ;    __,-. .  .
+   Cove ,'         |            |               |                ;_,-',._'--.   .
+        :          X ---------- X ------------- X                 ,--```    `--'
+        :       Thunderpeak   Moonshadow      Shadowfen            ;
+        :         / Summit      Grove          Swamp               :
+        ;        /    ^   ^     |                                :
+        (       X       ^ ^     X                              ;
+        `-.   Avalon   ^     Shadow                         ,'
+          ;             ^  ^   Peak                         :
+        .'                      |                     .-._,'
+      .'        X  ------------ X -------------- X          `.
+    _.'     Crimsonreach   Phoenixreach      Serpents    .__;
+    `._        Fortress       City          /  Labrynth    (
+      ;                      /             /                / 
+      :                     /             /                /
+      ;                    X --------- X ----- X-X-X      /                                                      
+      :                Obsidian      Wyvern    ZUKO     ;
+      `.                 Abyss       Layer      __ _ / 
+        `.                     ,..__,---._; __/ 
+          `-.__             : /               
+                `.--.____; /   
+
+
+"""
