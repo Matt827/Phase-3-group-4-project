@@ -39,41 +39,23 @@ health_potion4 = Item("Eternal Elixir", "POTION", 0, 0, 0, 100, 200, 18, 1, 1)
 shop1 = Shop("Store", [excalibur, mjolnir, dragonbone_bow, shadowblade, soul_reaver, moonlit_dagger, serpents_fang, stormcaller, dwarven_crossbow, warhammer_of_the_titans, knight_armor_set, noble_lord_armor_set, commander_armor_set, king_armor_set, health_potion1, health_potion2, health_potion3, health_potion4])
 
 
-
-
-
-
 # SQL COMMANDS
 Room.drop_table()
 Room.create_table()
+
 Shop.drop_table()
 Shop.create_table()
 shop1.save()
 
+Monster.drop_table()
+Monster.create_table()
+
 Item.drop_table()
 Item.create_table()
-excalibur.save()
-mjolnir.save()
-dragonbone_bow.save()
-shadowblade.save()
-soul_reaver.save()
-moonlit_dagger.save()
-serpents_fang.save()
-stormcaller.save()
-dwarven_crossbow.save()
-warhammer_of_the_titans.save()
-knight_armor_set.save()
-noble_lord_armor_set.save()
-commander_armor_set.save()
-king_armor_set.save()
-health_potion1.save()
-health_potion2.save()
-health_potion3.save()
-health_potion4.save()
 
 
 # LOCATIONS
-moonshadow_grove = Room('Moonshadow Grove', 'Moonshadow Grov, a mystical forest bathed in the silvery glow of the moon, where ancient, luminescent flora and fauna thrive, and whispers of forgotten enchantments linger in the cool night air.', None, shop1, 25)
+moonshadow_grove = Room('Moonshadow Grove', 'Moonshadow Grove, a mystical forest bathed in the silvery glow of the moon, where ancient, luminescent flora and fauna thrive, and whispers of forgotten enchantments linger in the cool night air.', None, shop1, 25)
 whispering_woods = Room('Whispering Woods', 'Whispering Woods, a serene woodland sanctuary where the leaves rustle with secrets, and ancient trees seem to murmur tales of forgotten magic, offering solace to those who seek its tranquil embrace.', None, None, 25)
 eldemoor_forest = Room('Eldemoor Forest', 'Eldemoor Forest, an ethereal realm where ancient trees reach for the sky, their trunks adorned with bioluminescent flora that illuminate the forest floor, casting a surreal, enchanting glow over the moss-covered ground.', None, shop1, 25)
 frostfall_glacier = Room('Frostfall Glacier', 'Frostfall Glacier stretches as far as the eye can see, a vast expanse of shimmering ice and snow beneath the towering peaks, where the air is crisp with the promise of adventure and every step echoes in the serene, frozen stillness.', None, None, 25)
@@ -177,30 +159,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     obsidian_abyss.monster = dragon2
     wyvern_lair.monster = None
     zukos_stronghold.monster = dragon3
-    
-    # SQL COMMANDS For MONSTERS
-    Monster.drop_table()
-    Monster.create_table()
-    ghost1.save()
-    ghost2.save()
-    ghost3.save()
-    troll1.save()
-    troll2.save()
-    troll3.save()
-    vampire1.save()
-    vampire2.save()
-    vampire3.save()
-    werewolf1.save()
-    werewolf2.save()
-    werewolf3.save()
-    demon1.save()
-    demon2.save()
-    demon3.save()
-    dragon1.save()
-    dragon2.save()
-    dragon3.save()
-    
-    
+
    
     player.inventory.append(excalibur)
     player.inventory.append(shadowblade)
@@ -321,14 +280,15 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             prev_room = current_room
             current_room = next_room
 
-
+            print(" ")
+            print(f"You are now in: {current_room.name}")
+            print(f"{current_room.description}")
+            
             if current_room.gold > 0:
-                print(f"Hey you found {current_room.gold} gold in {current_room.name}")
+                print(f"You found {current_room.gold} gold in {current_room.name}")
                 player.gold += current_room.gold
                 current_room.gold = 0
-
-            print(f"current room: {current_room.name}")
-            print(f"previous room: {prev_room.name}")
+                print(" ")
 
             if current_room == frostfall_glacier and keys["glacier_key"] == False:
                 glacier_puzzle()
@@ -357,7 +317,8 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         current_room.display_info()
 
     def shop_view():
-         for shop_item in current_room.shop.items:
+        # print(Item.view_table())
+        for shop_item in current_room.shop.items:
                 print(f"TYPE: {shop_item.item_type}  NAME: {shop_item.name}  COST: {shop_item.cost}\n")
 
     def shop_buy():
@@ -406,7 +367,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             print("Shop Owner:   Welcome!! What would you like?\n")
             shop_view()
             while True:
-                print(f"GOLD: {player.gold}")
+                print(f"Gold: {player.gold}")
                 shop_input = input("Shop Owner: Would you like to buy, sell, view or quit? >> ")
                 if shop_input == "view":
                     shop_view()
@@ -428,7 +389,8 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
                     player.inventory.append(drop)
             print(f"Monster dropped {current_room.monster.gold} gold")
             player.gold += current_room.monster.gold
-            print(f"GOLD: {player.gold}")
+            print(f"Current Gold: {player.gold}")
+            print("")
         
 
     def battle():
@@ -447,7 +409,8 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
 
                     # MONSTER DIES
                     if (current_room.monster.hp <= 0):
-                        print(f"{current_room.monster.name} has been vanquished!")
+                        print("")
+                        cprint(f"{current_room.monster.name} has been vanquished!", "yellow")
                         #player hp should be reset
                         player.hp = player.max_hp
                         #monster should drop items
@@ -484,8 +447,9 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         temp = prev_room
         prev_room = current_room
         current_room = temp
-        print(f"current room: {current_room.name}")
-        print(f"previous room: {prev_room.name}")
+        print("")
+        print(f"You are back in {current_room.name}")
+        print("")
 
     
     def view_equipment():
@@ -499,7 +463,9 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
                 curr_item = item
             
         if curr_item is None:
-            print(f"{item_name} not found in inventory")
+            print("")
+            cprint(f"{item_name} not found in inventory", "red")
+            print("")
             return
     
         if curr_item.item_type == "WEAPON" and player.weapon != curr_item:
@@ -507,7 +473,9 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
                 player.attack -= player.weapon.damage
             player.weapon = curr_item
             player.attack += curr_item.damage
-            print(f"SUCCESSFULLY EQUIPPED {curr_item.name}")
+            print("")
+            cprint(f"Successfully equipped {curr_item.name}", "green")
+            print("")
         elif curr_item.item_type == "ARMOR" and player.armor != curr_item:
             if (player.armor != None):
                 player.max_hp -= player.armor.defense
@@ -515,9 +483,13 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             player.armor = curr_item
             player.max_hp += curr_item.defense
             player.hp = player.max_hp
-            print(f"SUCCESSFULLY EQUIPPED {curr_item.name}")
+            print("")
+            cprint(f"Successfully equipped {curr_item.name}", "green")
+            print("")
         else:
-            print("CANNOT EQUIP")
+            print("")
+            cprint("Cannot equip", "red")
+            print("")
 
     def unequip(user_input):
         item_name = user_input[8:]
@@ -527,18 +499,26 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
                 player.max_hp -= player.armor.defense
                 player.hp = player.max_hp
                 player.armor = None
-                print(f"SUCCESSFULLY UNEQUIPPED {item_name}")
+                print("")
+                cprint(f"Successfully unequipped {item_name}", "green")
+                print("")
             else:
-                print(f"{item_name} IS NOT EQUIPPED")
+                print("")
+                cprint(f"{item_name} was not unequipped", "red")
+                print("")
 
 
         if (player.weapon != None):
             if (player.weapon.name.lower() == item_name.lower()):
                 player.attack -= player.weapon.damage
                 player.weapon = None
-                print(f"SUCCESSFULLY UNEQUIPPED {item_name}")
+                print("")
+                cprint(f"Successfully unequipped {item_name}", "green")
+                print("")
             else:
-                print(f"{item_name} IS NOT EQUIPPED")
+                print("")
+                cprint(f"{item_name} was not unequipped", "red")
+                print("")
 
 
     while True:
