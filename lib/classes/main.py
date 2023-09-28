@@ -211,15 +211,18 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     }
     
     def display_keys():
-        print("KEYS: ")
+        print("Keys: ")
         for key in keys:
             print(f"{key}: {keys[key]}")
 
     def glacier_puzzle():
+        cprint("Your have entered a challenge room! Solve the puzzle to win the key! Collect all three keys to battle the final boss!", "grey")
+        print("")
 
         print("""Welcome to FrostFall Glacier. The land of the ice! The glacier key lives here.
-              However, the binicles (binary icicles) are preventing you from reaching the key. It is your duty to
-              solve and shatter these binicles to obtain the key. Good luck! """)
+However, the binicles (binary icicles) are preventing you from reaching the key. It is your duty to
+solve and shatter these binicles to obtain the key. Good luck! """)
+        print("")
 
         def puzzle(binary, answer):
             while True:
@@ -241,16 +244,19 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         keys["glacier_key"] = True
 
     def water_puzzle():
+        cprint("Your have entered a challenge room! Solve the puzzle to win the key! Collect all three keys to battle the final boss!", "grey")
+        print("")
 
         print("""Welcome to Silverstrand Beach. Your feet on the sands feel nice and warm. However, you
-              have a task to compelete. To get to the water key, your job is to decipher these floating
-              (decimal) numbers to text. Good luck!
+have a task to compelete. To get to the water key, your job is to decipher these floating
+(decimal) numbers to text. Good luck!
               
-              side note: 
-                - use the ASCII table
-                - no spaces (except when told to space)
-                - case sensitive
-              """)
+side note: 
+- use the ASCII table
+- no spaces (except when told to space)
+- case sensitive
+""")
+        print("")
 
         def puzzle(ascii, answer):
             while True:
@@ -272,15 +278,18 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         keys["water_key"] = True
 
     def flame_puzzle():
+        cprint("Your have entered a challenge room! Solve the puzzle to win the key! Collect all three keys to battle the final boss!", "grey")
+        print("")
 
         print("""Welcome to Pheonixreach city, the civilization of flame.
-              The flame key is surrounded by flames. The flames are flashing bright continously.
-              Your task is to decipher the flashes and obtain the flame key! Good luck! 
-              
-              side note:
-                - no spaces (except when told)
-                - use morse code translator
-                - not case sensitive """)
+The flame key is surrounded by flames. The flames are flashing bright continously.
+Your task is to decipher the flashes and obtain the flame key! Good luck! 
+
+side note:
+- no spaces (except when told)
+- use morse code translator
+- not case sensitive """)
+        print("")
 
         def puzzle(morse, answer):
             while True:
@@ -315,14 +324,14 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
                     return
 
         if (isinstance(next_room, noneType)):
-            print("Not a room")
+            print("You cannot travel here, select a different direction")
         else:
             prev_room = current_room
             current_room = next_room
 
             print(" ")
             print(f"You are now in: {current_room.name}")
-            print(f"{current_room.description}")
+            cprint(f"{current_room.description}", "blue")
             
             if current_room.gold > 0:
                 print(f"You found {current_room.gold} gold in {current_room.name}")
@@ -341,7 +350,8 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
     def help():
         print('''  Commands list:
     Directions:  go up,  go down,  go left,  go right,  go back, 
-    Information:  view info,  view inventory,  location info,  shop 
+    Information:  view info,  view inventory,  location info, keys
+    Items: equip,  unequip
     Battle:  attack,  retreat
               ''')
 
@@ -349,7 +359,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         player.display_info()
         
     def view_inventory():
-        print("YOUR INVENTORY: ")
+        print("Inventory: ")
         player.display_inventory()
         print()
         
@@ -384,7 +394,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
             current_room.shop.items.remove(selected_item)
             player.gold -= selected_item.cost
             player.inventory.append(selected_item)
-            print(f"SUCCESSFULLY PURCHASED {selected_item.name}")
+            print(f"Successfully purchased {selected_item.name}")
         else:
             print("Shop Onwer: You don't have enough gold!")
         
@@ -485,7 +495,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
                 elif battle_input == "retreat":
                     print("You have retreated from battle.")
                     #player and monster hp should be reset
-                    player.hp = player.health + player.defense
+                    player.hp = player.max_hp + player.defense
                     current_room.monster.hp = current_room.monster.health
                     break
 
