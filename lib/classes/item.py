@@ -15,7 +15,6 @@ class Item:
         self.monster_id = monster_id
         self.shop_id = shop_id
         self.id = id
-        self.save()
         
     @classmethod
     def view_table(cls):
@@ -25,6 +24,8 @@ class Item:
         
         CURSOR.execute(sql)
         CONN.commit()
+        result = CURSOR.fetchall()
+        print(result)
 
     @classmethod
     def create_table(cls):
