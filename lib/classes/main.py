@@ -442,7 +442,7 @@ side note:
                 elif battle_input == "retreat":
                     print("You have retreated from battle.")
                     #player and monster hp should be reset
-                    player.hp = player.health + player.defense
+                    player.hp = player.max_hp + player.defense
                     current_room.monster.hp = current_room.monster.health
                     break
 
