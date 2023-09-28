@@ -1,7 +1,7 @@
 from __init__ import CONN, CURSOR
 
 class Monster:
-    def __init__(self, name, gold, health, attack, speed, drops):
+    def __init__(self, name, gold, health, attack, speed, drops, location):
         self.name = name
         self.gold = gold
         self.health = health
@@ -9,17 +9,20 @@ class Monster:
         self.attack = attack
         self.speed = speed
         self.drops = drops
+        self.location = location
         
     @classmethod
     def create_table(cls):
         sql = """
             CREATE TABLE IF NOT EXISTS monsters (
             MonsterId INTEGER PRIMARY KEY,
+            locationId INTEGER,
             name TEXT,
             gold INTEGER,
             health INTEGER,
             attack INTEGER,
-            speed INTEGER
+            speed INTEGER,
+            FOREIGN KEY (locationId) REFERENCES locations(location_id)
             )
         """
         
@@ -37,11 +40,11 @@ class Monster:
 
     def save(self):
         sql = """
-            INSERT INTO monsters (name, gold, health, attack, speed)
-            VALUES(?, ?, ?, ?, ?)
+            INSERT INTO monsters (locationId, name, gold, health, attack, speed)
+            VALUES(?, ?, ?, ?, ?, ?)
         """
 
-        CURSOR.execute(sql, (self.name, self.gold, self.health, self.attack, self.speed))
+        CURSOR.execute(sql, (self.location, self.name, self.gold, self.health, self.attack, self.speed))
         CONN.commit()
         self.id = CURSOR.lastrowid
     
