@@ -1,10 +1,10 @@
 from __init__ import CURSOR, CONN
 
 class Shop:
-    def __init__(self, name, items=[]):
+    def __init__(self, name, id, items=[]):
         self.name = name
+        self.id = id
         self.items = items
-
     @classmethod
     def create_table(cls):
         sql = """
