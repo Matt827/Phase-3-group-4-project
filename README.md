@@ -2,7 +2,7 @@
 
 ## Title: The Legend of Mattanoman
 
-CLI adventure that game follows a story line of a fallen king that scales through the landscapes and towns, battling various creatures, monsters and foes. Eventually, defeating the black dragon and re-claiming their throne and kingdom.
+CLI adventure game follows a story line of a fallen king that scales through the landscapes and towns, battling various creatures, monsters and foes. Eventually, defeating the black dragon and re-claiming their throne and kingdom.
 
 ## CRUD
 

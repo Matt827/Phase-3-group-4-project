@@ -374,8 +374,8 @@ side note:
         print('''  Commands list:
     Directions:  go up,  go down,  go left,  go right,  go back, 
     Information:  map,  view info,  inventory,  location details,  keys
-    Items:  equip,  unequip
-    Battle:  attack,  retreat
+    Items:  shop,  equip,  unequip
+    Battle:  battle,  attack,  retreat
               ''')
 
     def view_info():
