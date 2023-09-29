@@ -37,30 +37,32 @@ walk.set_volume(0.2)
 paper.set_volume(0.2)
  # WEAPONS
 excalibur = Item("Excalibur", "WEAPON", "Legendary Sword", 10, 0, 0, 15, 1, 1, 1)
-mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, 0, 0, 25, 8, 1, 1)
-dragonbone_bow = Item("Dragonbone Bow", "WEAPON", "Wyrmstring Bow", 27, 0, 0, 32, 10, 1, 1)
-shadowblade = Item("Shadow Blade", "WEAPON", "Stealthy Dagger", 15, 0, 0, 20, 6, 1, 1)
-soul_reaver = Item("Soul Reaver", "WEAPON", "Cursed Sword", 30, 0, 0, 35, 13, 1, 1)
+mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, 0, 0, 25, 8, 2, 1)
+dragonbone_bow = Item("Dragonbone Bow", "WEAPON", "Wyrmstring Bow", 27, 0, 0, 32, 10, 3, 1)
+shadowblade = Item("Shadow Blade", "WEAPON", "Stealthy Dagger", 15, 0, 0, 20, 6, 2, 1)
+soul_reaver = Item("Soul Reaver", "WEAPON", "Cursed Sword", 30, 0, 0, 35, 13, 3, 1)
 moonlit_dagger = Item("Moonlit Dagger", "WEAPON", "Silvered Blade", 13, 0, 0, 17, 4, 1, 1)
-serpents_fang = Item("Serpent's Fang", "WEAPON", "Venomous Whip", 16, 0, 0, 21, 7, 1, 1)
-stormcaller = Item("Stormcaller", "WEAPON", "Lightning Sword", 27, 0, 0, 32, 12, 1, 1)
+serpents_fang = Item("Serpent's Fang", "WEAPON", "Venomous Whip", 16, 0, 0, 21, 7, 2, 1)
+stormcaller = Item("Stormcaller", "WEAPON", "Lightning Sword", 27, 0, 0, 32, 12, 3, 1)
 dwarven_crossbow = Item("Dwarven Crossbow", "WEAPON", "Stour Crossbow", 12, 0, 0, 17, 3, 1, 1)
-warhammer_of_the_titans = Item("Warhammer of the Titans", "WEAPON", "Colossal Warhammer", 35, 0, 0, 40, 16, 1, 1)
+warhammer_of_the_titans = Item("Warhammer of the Titans", "WEAPON", "Colossal Warhammer", 35, 0, 0, 40, 16, 3, 1)
 
 # ARMOR
 knight_armor_set = Item("Knights Armor Set", "ARMOR", "Flexible Defense", 0, 25, 0, 35, 2, 1, 1)
-noble_lord_armor_set = Item("Noble Lord Armor Set", "ARMOR", "Agile Ward", 0, 50, 0, 60, 5, 1, 1)
-commander_armor_set = Item("Commander Armor Set", "ARMOR", "Heavy Protection", 0, 75, 0, 85, 11, 1, 1)
-king_armor_set = Item("King Armor Set", "ARMOR", "Dragon Scales", 0, 100, 0, 110, 17, 1, 1)
+noble_lord_armor_set = Item("Noble Lord Armor Set", "ARMOR", "Agile Ward", 0, 50, 0, 60, 5, 2, 1)
+commander_armor_set = Item("Commander Armor Set", "ARMOR", "Heavy Protection", 0, 75, 0, 85, 11, 2, 1)
+king_armor_set = Item("King Armor Set", "ARMOR", "Dragon Scales", 0, 100, 0, 110, 17, 3, 1)
 
 # POTION
 health_potion1 = Item("Vitality Elixir", "POTION", "Increase max health by 25", 0, 0, 25, 50, 9, 1, 1)
-health_potion2 = Item("Health Elixir", "POTION", "Increase max health by 50", 0, 0, 50, 100, 14, 1, 1)
-health_potion3 = Item("Life Elixir", "POTION", "Increase max health by 75", 0, 0, 75, 150, 15, 1, 1)
-health_potion4 = Item("Eternal Elixir", "POTION", "Increase max health by 100", 0, 0, 100, 200, 18, 1, 1)
+health_potion2 = Item("Health Elixir", "POTION", "Increase max health by 50", 0, 0, 50, 100, 14, 2, 1)
+health_potion3 = Item("Life Elixir", "POTION", "Increase max health by 75", 0, 0, 75, 150, 15, 2, 1)
+health_potion4 = Item("Eternal Elixir", "POTION", "Increase max health by 100", 0, 0, 100, 200, 18, 3, 1)
 
 
-shop1 = Shop("Store", [excalibur, mjolnir, dragonbone_bow, shadowblade, soul_reaver, moonlit_dagger, serpents_fang, stormcaller, dwarven_crossbow, warhammer_of_the_titans, knight_armor_set, noble_lord_armor_set, commander_armor_set, king_armor_set, health_potion1, health_potion2, health_potion3, health_potion4])
+shop1 = Shop("Level 1 Shop", 1, [excalibur, moonlit_dagger, dwarven_crossbow, knight_armor_set, health_potion1])
+shop2 = Shop("Level 2 Shop", 2, [mjolnir, shadowblade, serpents_fang, noble_lord_armor_set, commander_armor_set, health_potion2, health_potion3])
+shop3 = Shop("Level 3 Shop", 3, [health_potion4, king_armor_set, warhammer_of_the_titans, stormcaller, soul_reaver, dragonbone_bow])
 
 
 # SQL COMMANDS
@@ -70,6 +72,8 @@ Room.create_table()
 Shop.drop_table()
 Shop.create_table()
 shop1.save()
+shop2.save()
+shop3.save()
 
 Monster.drop_table()
 Monster.create_table()
@@ -104,21 +108,21 @@ moonshadow_grove = Room('Moonshadow Grove', 'Moonshadow Grove, a mystical forest
 whispering_woods = Room('Whispering Woods', 'Whispering Woods, a serene woodland sanctuary where the leaves rustle with secrets, and ancient trees seem to murmur tales of forgotten magic, offering solace to those who seek its tranquil embrace.', None, None, 25)
 eldemoor_forest = Room('Eldemoor Forest', 'Eldemoor Forest, an ethereal realm where ancient trees reach for the sky, their trunks adorned with bioluminescent flora that illuminate the forest floor, casting a surreal, enchanting glow over the moss-covered ground.', None, shop1, 25)
 frostfall_glacier = Room('Frostfall Glacier', 'Frostfall Glacier stretches as far as the eye can see, a vast expanse of shimmering ice and snow beneath the towering peaks, where the air is crisp with the promise of adventure and every step echoes in the serene, frozen stillness.', None, None, 25)
-silverstrand_beach = Room('Silverstrand Beach', 'Silverstrand Beach is a pristine coastal paradise, where fine, silvery sands stretch alongside crystalline waters, kissed by the gentle caress of a perpetual sunset, creating a timeless haven of tranquility and beauty.', None, shop1, 25)
+silverstrand_beach = Room('Silverstrand Beach', 'Silverstrand Beach is a pristine coastal paradise, where fine, silvery sands stretch alongside crystalline waters, kissed by the gentle caress of a perpetual sunset, creating a timeless haven of tranquility and beauty.', None, shop2, 25)
 moonlit_cove = Room('Moonlit Cove', 'Moonlit Cove is a secluded bay nestled between rugged cliffs, its tranquil waters reflecting the silvery glow of the moon, while ancient, luminescent flora line the shore, casting an otherworldly aura over this hidden sanctuary.', None, shop1, 25)
 misthaven_vale = Room('Misthaven Vale', 'Misthaven Vale is a mystical highland shrouded in perpetual mist, where emerald forests and cascading waterfalls converge, and the air is alive with the soft hum of ancient enchantments, creating an ethereal realm untouched by time.', None,None, 25)
 glade_grasslands = Room('Glade Grasslands', 'Glade Grasslands unfurl as an endless expanse of rolling meadows, their emerald blades swaying in harmonious rhythm with the breeze, where wildflowers bloom in a symphony of color, inviting wanderers to bask in the serenity of natures embrace.', None, None, 25)
 avalon = Room('Avalon', "Mythical island of legend", None, shop1, 25)
 luminara_falls = Room('Luminara Falls', 'Luminara Falls cascades down a majestic cliffside, its crystalline waters refracting the sunlight into a kaleidoscope of colors, while ethereal wisps of mist dance around the falls, creating a breathtaking, almost otherworldly spectacle.', None, shop1, 25)
-mistral_bay = Room('Mistral Bay', 'Mistral Bay is a picturesque coastal retreat where azure waves gently lap against the shore, kissed by the refreshing caress of a perpetual sea breeze, while rugged cliffs and lush vegetation frame this idyllic sanctuary.', None, shop1, 25)
+mistral_bay = Room('Mistral Bay', 'Mistral Bay is a picturesque coastal retreat where azure waves gently lap against the shore, kissed by the refreshing caress of a perpetual sea breeze, while rugged cliffs and lush vegetation frame this idyllic sanctuary.', None, shop2, 25)
 thunderpeak_summit = Room('Thunderpeak Summit', 'Thunderpeak Summit looms as the highest pinnacle in a range of ancient, mist-shrouded mountains, its jagged spires seeming to touch the very heavens, where thunderstorms and crackling energy fill the air with an electric charge, creating an awe-inspiring yet perilous realm.', None, shop1, 25)
 shadowfen_swamp = Room('Shadowfen Swamp', 'Shadowfen Swamp sprawls in mysterious gloom, its tangled, moss-draped trees and murky waters shrouded in a perpetual twilight, where haunting cries of unseen creatures echo through the mist, and twisted roots conceal secrets of ages past.', None, None, 25)
 shadow_peak = Room('Shadow Peak', 'Shadow Peak stands as a towering monolith amidst a desolate, moonlit wasteland, its jagged spires casting long, eerie silhouettes across the barren expanse, where the air is heavy with an unsettling stillness, harboring the whispers of forgotten legends.', None, shop1, 25)
-crimsonreach_fortress = Room('Crimsonreach Fortress', 'Crimsonreach Fortress is a formidable citadel perched atop a blood-red cliff, its dark, stone walls looming over turbulent seas, while fiery torches light the way through labyrinthine corridors echoing with the history of battles long past.', None, shop1, 25)
+crimsonreach_fortress = Room('Crimsonreach Fortress', 'Crimsonreach Fortress is a formidable citadel perched atop a blood-red cliff, its dark, stone walls looming over turbulent seas, while fiery torches light the way through labyrinthine corridors echoing with the history of battles long past.', None, shop2, 25)
 phoenixreach_city = Room('Pheonixreach City', 'Phoenixreach City sprawls as a bustling metropolis of gleaming spires and arched bridges, its streets alive with a vibrant tapestry of cultures, where the air hums with the energy of innovation and the spirit of rebirth.', None, None, 25)
-serpents_labrynth = Room("Serpent's Labrynth", 'Serpents Labyrinth winds through an ancient subterranean maze, its shadowy passages illuminated by bioluminescent flora, where the hiss of unseen creatures and the echo of forgotten whispers create an eerie, enigmatic atmosphere.', None, shop1, 25)
-obsidian_abyss = Room('Obsidian Abyss', 'Obsidian Abyss plunges into the depths of the earth, a chasm of smooth, jet-black stone walls that seem to absorb all light, where the air is heavy with a sense of ancient, foreboding power.', None, shop1, 25)
-wyvern_lair = Room('Wyvern Lair', 'Wynvern Lair is a hidden sanctuary nestled within the craggy heart of a mist-shrouded mountain, its caverns adorned with glistening crystals and echoing with the occasional stirring of slumbering wyverns, guarding their ancient treasures.', None, shop1, 25)
+serpents_labrynth = Room("Serpent's Labrynth", 'Serpents Labyrinth winds through an ancient subterranean maze, its shadowy passages illuminated by bioluminescent flora, where the hiss of unseen creatures and the echo of forgotten whispers create an eerie, enigmatic atmosphere.', None, shop3, 25)
+obsidian_abyss = Room('Obsidian Abyss', 'Obsidian Abyss plunges into the depths of the earth, a chasm of smooth, jet-black stone walls that seem to absorb all light, where the air is heavy with a sense of ancient, foreboding power.', None, shop3, 25)
+wyvern_lair = Room('Wyvern Lair', 'Wynvern Lair is a hidden sanctuary nestled within the craggy heart of a mist-shrouded mountain, its caverns adorned with glistening crystals and echoing with the occasional stirring of slumbering wyverns, guarding their ancient treasures.', None, shop3, 25)
 zukos_stronghold = Room("Zuko's Stronghold", 'Zukos Stronghold, hewn from the living rock of a volcanic peak, stands as a formidable bastion overlooking a fiery landscape, where molten streams cascade down the slopes, and the air resonates with the presence of the majestic dragon, Zuko, guardian of this fiery domain.', None, None, 25)
 
 phoenixreach_city.room_directions(shadow_peak, obsidian_abyss, crimsonreach_fortress, serpents_labrynth)
@@ -239,7 +243,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         print()
 
     def glacier_puzzle():
-        cprint("You have entered a challenge room! Solve the puzzle to win the key! Collect all three keys to battle the final boss!", "grey")
+        cprint("Your have entered a challenge room! Solve the puzzle to win the key! Collect all three keys to battle the final boss!", "grey")
         print()
 
         print("""Welcome to FrostFall Glacier. The land of the ice! The glacier key lives here.
@@ -391,7 +395,7 @@ side note:
         current_room.display_info()
 
     def shop_view():
-        CURSOR.execute("SELECT name, type, description, damage, defense, potion, cost FROM items")
+        CURSOR.execute(f"SELECT name, type, description, damage, defense, potion, cost FROM items WHERE ShopsId = {current_room.shop.id}")
         CONN.commit()
         result = CURSOR.fetchall()
         for item in result:
@@ -436,6 +440,9 @@ side note:
                     print("Item does not exist in your inventory")
                     continue
                 else:
+                    sql_sell = f"INSERT INTO items (name, ShopsId, MonstersId, type, description, damage, defense, potion, cost) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                    CURSOR.execute(sql_sell, (selected_item.name, current_room.shop.id, selected_item.monster_id, selected_item.item_type, selected_item.description, selected_item.damage, selected_item.defense, selected_item.potion, selected_item.cost))
+                    CONN.commit()
                     selected_item.add_item_shop()
                     player.inventory.remove(selected_item)
                     pygame.mixer.Sound.play(purchased)
@@ -450,7 +457,7 @@ side note:
         if current_room.shop == None:
             print("There is no shop here")
         else:
-            print("Shop Owner:   Welcome!! What would you like?\n")
+            print(f"Shop Owner:   Welcome to the {current_room.shop.name}!! What would you like?\n")
             shop_view()
             while True:
                 print(f"Gold: {player.gold}")
