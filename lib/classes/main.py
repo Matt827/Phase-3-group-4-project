@@ -19,10 +19,20 @@ level_complete = pygame.mixer.Sound("./lib/classes/assets/level_complete.wav")
 you_lose = pygame.mixer.Sound("./lib/classes/assets/you_lose.wav")
 crowd_win = pygame.mixer.Sound("./lib/classes/assets/crowd_win.wav")
 sound_win = pygame.mixer.Sound("./lib/classes/assets/sound_win.wav")
-equip = pygame.mixer.Sound("./lib/classes/assets/equip.wav")
+equipping = pygame.mixer.Sound("./lib/classes/assets/equip.wav")
 purchased = pygame.mixer.Sound("./lib/classes/assets/purchased.wav")
 walk = pygame.mixer.Sound("./lib/classes/assets/walking.wav")
-music.set_volume(0.3)
+music.set_volume(0.05)
+weapon_sound.set_volume(0.1)
+grunt.set_volume(0.1)
+death.set_volume(0.1)
+level_complete.set_volume(0.1)
+you_lose.set_volume(0.1)
+crowd_win.set_volume(0.1)
+sound_win.set_volume(0.1)
+equipping.set_volume(0.1)
+purchased.set_volume(0.1)
+walk.set_volume(0.2)
  # WEAPONS
 excalibur = Item("Excalibur", "WEAPON", "Legendary Sword", 10, 0, 0, 15, 1, 1, 1)
 mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, 0, 0, 25, 8, 1, 1)
@@ -554,7 +564,7 @@ side note:
             player.weapon = curr_item
             player.attack += curr_item.damage
             print()
-            pygame.mixer.Sound.play(equip)
+            pygame.mixer.Sound.play(equipping)
             cprint(f"Successfully equipped {curr_item.name}", "green")
             print()
         elif curr_item.item_type == "ARMOR" and player.armor != curr_item:
@@ -565,7 +575,7 @@ side note:
             player.max_hp += curr_item.defense
             player.hp = player.max_hp
             print()
-            pygame.mixer.Sound.play(equip)
+            pygame.mixer.Sound.play(equipping)
             cprint(f"Successfully equipped {curr_item.name}", "green")
             print()
         else:
@@ -582,7 +592,7 @@ side note:
                 player.hp = player.max_hp
                 player.armor = None
                 print()
-                pygame.mixer.Sound.play(equip)
+                pygame.mixer.Sound.play(equipping)
                 cprint(f"Successfully unequipped {item_name}", "green")
                 print()
             else:
@@ -596,7 +606,7 @@ side note:
                 player.attack -= player.weapon.damage
                 player.weapon = None
                 print()
-                pygame.mixer.Sound.play(equip)
+                pygame.mixer.Sound.play(equipping)
                 cprint(f"Successfully unequipped {item_name}", "green")
                 print()
             else:

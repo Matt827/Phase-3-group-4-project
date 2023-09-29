@@ -7,7 +7,7 @@ class Player:
         self.hp = 100
         self.max_hp = 100
         self.attack = 5
-        self.gold = 1000
+        self.gold = 0
         self.inventory = []
         self.armor = None
         self.weapon = None
