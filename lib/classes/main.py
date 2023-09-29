@@ -22,6 +22,7 @@ sound_win = pygame.mixer.Sound("./lib/classes/assets/sound_win.wav")
 equipping = pygame.mixer.Sound("./lib/classes/assets/equip.wav")
 purchased = pygame.mixer.Sound("./lib/classes/assets/purchased.wav")
 walk = pygame.mixer.Sound("./lib/classes/assets/walking.wav")
+paper = pygame.mixer.Sound("./lib/classes/assets/paper.wav")
 music.set_volume(0.05)
 weapon_sound.set_volume(0.1)
 grunt.set_volume(0.1)
@@ -33,6 +34,7 @@ sound_win.set_volume(0.1)
 equipping.set_volume(0.1)
 purchased.set_volume(0.1)
 walk.set_volume(0.2)
+paper.set_volume(0.2)
  # WEAPONS
 excalibur = Item("Excalibur", "WEAPON", "Legendary Sword", 10, 0, 0, 15, 1, 1, 1)
 mjolnir = Item("Mjolnir", "WEAPON", "Thunderous Hammer", 20, 0, 0, 25, 8, 1, 1)
@@ -644,6 +646,7 @@ side note:
         elif user_input == "view info":
             view_info()
         elif user_input == "map":
+            pygame.mixer.Sound.play(paper)
             view_map()
         elif user_input == "equipment":
             view_equipment()
