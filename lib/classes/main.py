@@ -361,7 +361,7 @@ side note:
     def help():
         print('''  Commands list:
     Directions:  go up,  go down,  go left,  go right,  go back, 
-    Information:  view info,  inventory,  location details,  keys
+    Information:  map,  view info,  inventory,  location details,  keys
     Items:  equip,  unequip
     Battle:  attack,  retreat
               ''')
