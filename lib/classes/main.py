@@ -23,7 +23,7 @@ equipping = pygame.mixer.Sound("./lib/classes/assets/equip.wav")
 purchased = pygame.mixer.Sound("./lib/classes/assets/purchased.wav")
 walk = pygame.mixer.Sound("./lib/classes/assets/walking.wav")
 paper = pygame.mixer.Sound("./lib/classes/assets/paper.wav")
-music.set_volume(0.05)
+music.set_volume(0.03)
 weapon_sound.set_volume(0.1)
 grunt.set_volume(0.1)
 death.set_volume(0.1)
@@ -559,8 +559,15 @@ side note:
             cprint(f"{item_name} not found in inventory", "red")
             print()
             return
-    
-        if curr_item.item_type == "WEAPON" and player.weapon != curr_item:
+        
+        if curr_item.item_type == "POTION":
+            player.hp += curr_item.potion
+            player.max_hp += curr_item.potion
+            print()
+            pygame.mixer.Sound.play(equipping)
+            cprint(f"Successfully drank {curr_item.name}", "green")
+            print()
+        elif curr_item.item_type == "WEAPON" and player.weapon != curr_item:
             if (player.weapon != None):
                 player.attack -= player.weapon.damage
             player.weapon = curr_item
