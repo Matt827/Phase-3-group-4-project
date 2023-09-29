@@ -239,7 +239,7 @@ He must now adventure through the land of Elda, battling monsters and foes, and 
         print()
 
     def glacier_puzzle():
-        cprint("Your have entered a challenge room! Solve the puzzle to win the key! Collect all three keys to battle the final boss!", "grey")
+        cprint("You have entered a challenge room! Solve the puzzle to win the key! Collect all three keys to battle the final boss!", "grey")
         print()
 
         print("""Welcome to FrostFall Glacier. The land of the ice! The glacier key lives here.
